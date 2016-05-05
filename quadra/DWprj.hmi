@@ -1,0 +1,10 @@
+[INIT]
+VARCount=64
+PICFIX=1
+SCREENDSIZE=800X480
+SPADDRESS=5000
+[IMG]
+00=00_basquete.bmp
+01=01_tenis.bmp
+02=02_Volei.bmp
+03=03_futsal.bmp
