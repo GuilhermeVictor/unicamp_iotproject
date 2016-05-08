@@ -1,0 +1,35 @@
+<div class="mdl-grid demo-content">
+	<div class="mdl-cell mdl-cell--4-col">
+		<div class="sport-card sport-card-basketball mdl-card mdl-shadow--2dp">
+		  <div class="mdl-card__title">
+			<h2 class="mdl-card__title-text">Futebol</h2>
+		  </div>
+		  <div class="mdl-card__supporting-text">				
+			<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-sport-court">
+				<span class="mdl-switch__label">Iluminação ligada</span>
+				<input type="checkbox" id="switch-sport-court" class="mdl-switch__input" checked>
+			</label>
+		  </div>
+		  <div class="mdl-card__actions mdl-card--border">
+			<a id="sport-card-dialog-open" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+			  Alterar jogo
+			</a>
+		  </div>  
+		</div>
+	</div>
+</div>
+
+<dialog id="sport-card-dialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Escolha o jogo</h4>
+    <div class="mdl-dialog__content">
+      <div class="mdl-grid demo-content">
+		<div class="mdl-cell mdl-cell--4-col">
+			
+		</div>
+	  </div>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button">Confirmar</button>
+      <button id="sport-card-dialog-close" type="button" class="mdl-button close">Fechar</button>
+    </div>
+</dialog>

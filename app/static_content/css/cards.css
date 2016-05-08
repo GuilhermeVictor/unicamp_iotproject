@@ -1,0 +1,42 @@
+
+.mdl-switch > .mdl-switch__input {
+	
+}
+
+.sport-card > .mdl-card__title {
+  color: #fff;
+  height: 176px;  
+}
+
+.sport-card.sport-card-basketball > .mdl-card__title {
+	background: url('/img/soccer_128.png') #46B6DC;
+	background-position: bottom 30% right 15%;
+	background-repeat: no-repeat;	
+	/*
+	-webkit-animation-name: ball; /* Chrome, Safari, Opera * /
+    -webkit-animation-duration: 4s; /* Chrome, Safari, Opera * /
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-timing-function: ease-in-out;	
+    animation-name: ball;
+    animation-duration: 1s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;*/
+}
+
+.sport-card > .mdl-card__menu {
+  color: #fff;
+}
+
+@-webkit-keyframes ball {
+    0%   {background-position: bottom 70% right 15%;}	
+    33%  {background-position: bottom 35% right 15%;}	
+	66% {background-position: bottom 70% right 15%;}
+	100%  {background-position: bottom 35% right 15%;}	
+}
+
+@keyframes ball {
+    0%   {background-position: bottom 70% right 15%;}	
+    33%  {background-position: bottom 35% right 15%;}	
+	66% {background-position: bottom 70% right 15%;}
+	100%  {background-position: bottom 35% right 15%;}	
+}
