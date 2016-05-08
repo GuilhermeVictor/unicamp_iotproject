@@ -1,6 +1,4 @@
-# mc436_azul
+# Azul
 Projeto de IOT de engenharia de software 
 
-Arduino e web
-
-Créditos ao template do site: https://getmdl.io/templates/dashboard/index.html 
+Créditos ao [template](https://getmdl.io/templates/dashboard/index.html) usado 
