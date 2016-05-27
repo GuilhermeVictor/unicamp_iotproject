@@ -1,32 +1,49 @@
 //carrega dependencias
 var express = require('express');
-var mustache = require('mustache');
 var fs = require('fs');
-var arduinoPort = require('./node_modules_custom/arduinoserialport')
-var templatebuilder = require('./node_modules_custom/templatebuilder')
-var config = require('./config');
+var mustache = require('mustache');
 
-//adiciona chave de configuracao no objeto config da aplicacao
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash    = require('connect-flash');
+
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser   = require('body-parser');
+var session      = require('express-session');
+
+var templatebuilder = require('./utility/templatebuilder')
+var config = require('./config/config');
+var routes = require('./routes');
+var configDB = require('./config/database.js');
+
+require('./config/passport')(passport); // passa passport para ser configurado
+
+// adiciona chaves de configuracoes no objeto config da aplicacao
 config.appPath = __dirname;
+config.port = 8081;
 
-var render = templatebuilder(config);
 var app = express();
+var render = templatebuilder(config, fs, mustache);
 
-app.use(express.static(__dirname + '/static_content'));
-	
-//index
-app.get('/', function (req, res) {	
-	var html = render.view(__dirname + '/views/index.mustache', {});
-	res.send(html);
-});
+// set up our express application
+app.set('view engine', 'mustache'); // set up mustache for templating
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser()); // get information from html forms
+app.use(express.static(config.appPath + '/static_content'));
 
-//change sport call
-app.post('/sports', function (req, res) {	
-	console.log(req);	
-	arduinoPort.write(1); // mandar comando pra trocar a quadra
-});
+// required for passport
+app.use(session({ secret: '879Uhas789Hnuiaoiqwue8712asSidA' })); // session secret
+app.use(passport.initialize());
+//app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+// configuracoes
+//mongoose.connect(configDB.url); // connect to our database
+routes(config, app, passport, render);
 
 //inicia servico
-app.listen(8081, function () {
-  console.log('Example app listening on port 8081!');
+app.listen(config.port, function () {
+  console.log('Example app listening on port ' + config.port + '!');
 });

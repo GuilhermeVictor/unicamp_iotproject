@@ -7,3 +7,9 @@ https://www.iconfinder.com/icons/1075458/activity_ball_basketball_equipment_game
 https://getmdl.io/index.html
 
 https://github.com/GoogleChrome/dialog-polyfill
+
+https://mustache.github.io/mustache.5.html
+http://mongoosejs.com/
+https://scotch.io/tutorials/easy-node-authentication-google
+
+janux-free-responsive-admin-dashboard-template

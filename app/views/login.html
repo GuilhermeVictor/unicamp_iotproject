@@ -1,0 +1,44 @@
+
+<div class="row-fluid">
+	<div class="login-box">
+		<div class="icons">
+			<a href="index.html" class="hide"><i class="halflings-icon home"></i></a>
+			<a href="#"><i class="halflings-icon cog"></i></a>
+		</div>
+			
+		<form class="form-horizontal" action="index.html" method="post">
+			<fieldset>				
+				<div class="jumbotron text-center">					
+					<h1>Entre com sua conta</h2>
+					
+					<a href="/auth/google" class="btn btn-danger"><span class="icon-google-plus"></span> Google</a>
+					
+					<a href="/auth/google" class="btn btn-disabled"><span class="icon-facebook"></span> Facebook</a>
+					
+					<a href="/auth/google" class="btn btn-disabled"><span class="icon-twitter"></span> Twitter</a>
+				</div>
+				
+				<div class="control-group">
+					<label class="remember" for="remember"><input type="checkbox" id="remember" class="checker" />Continuar logado</label>
+				</div>
+				
+				<!-- show any messages that come back with authentication -->
+				{{#hasMessage}}
+					<div class="box-content">					
+						<div class="alert alert-danger">{{message}}</div>
+					</div>
+				{{/hasMessage}}					
+			</fieldset>
+		</form>		
+	</div><!--/span-->	
+</div><!--/row-->
+
+</div><!--/fluid-row-->
+<div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-content">
+		<ul class="list-inline item-details">
+			<li><a href="http://themifycloud.com">Admin templates</a></li>
+			<li><a href="http://themescloud.org">Bootstrap themes</a></li>
+		</ul>
+	</div>
+</div>
