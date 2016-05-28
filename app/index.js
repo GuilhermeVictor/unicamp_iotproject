@@ -28,19 +28,23 @@ var render = templatebuilder(config, fs, mustache);
 
 // set up our express application
 app.set('view engine', 'mustache'); // set up mustache for templating
-app.use(morgan('dev')); // log every request to the console
+//app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 app.use(express.static(config.appPath + '/static_content'));
 
 // required for passport
-app.use(session({ secret: '879Uhas789Hnuiaoiqwue8712asSidA' })); // session secret
+app.use(session({ 
+	secret: '879Uhas789Hnuiaoiqwue8712asSidA',
+	resave: false,
+    saveUninitialized: false
+})); // session secret
 app.use(passport.initialize());
-//app.use(passport.session()); // persistent login sessions
+app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // configuracoes
-//mongoose.connect(configDB.url); // connect to our database
+mongoose.connect(configDB.url); // connect to our database
 routes(config, app, passport, render);
 
 //inicia servico

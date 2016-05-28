@@ -14,11 +14,6 @@ module.exports = function(config, app, passport, render) {
 		arduinoPort.write(1); // mandar comando pra trocar a quadra
 	});
 
-    // route for home page
-    app.get('/test', function(req, res) {
-        res.render('index.ejs'); // load the index.ejs file
-    });
-
     // route for the login form
     app.get('/login', function(req, res) {	
         // render the page and pass in any flash data if it exists
@@ -75,17 +70,14 @@ module.exports = function(config, app, passport, render) {
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
     // the callback after google has authenticated the user
-    app.get('/google/oauth2/callback',
-            passport.authenticate('google', {
-                    successRedirect : '/',
-                    failureRedirect : '/login'
-            }));
+    app.get('/google/oauth2/callback', 
+		passport.authenticate('google', { successRedirect : '/', failureRedirect : '/login' })
+	);
 
 };
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
