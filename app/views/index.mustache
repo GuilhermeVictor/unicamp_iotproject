@@ -1,7 +1,7 @@
 <div class="row-fluid">
-	<div class="w3-card-2 span4" onTablet="span6" onDesktop="span4">
+	<div class="sport-card w3-card-2 span4" onTablet="span6" onDesktop="span4">
 		<div class="row-fluid">
-			<a class="quick-button metro red btn-change-sport">
+			<a class="quick-button metro red btn-change-sport" data-sport="tennis">
 				<img alt="" src="img/tennis_128.png"></img>
 				<p id="game-name">Tênis</p>				
 			</a>
@@ -9,79 +9,53 @@
 		<div class="box-content">
 			<div>
 				<p>
-					Você agendou o uso da quada para agora.
+					Você agendou o uso da quadra para agora.
 				</p>
 				<p>
 					Você pode usar a quadra até 18h.
 				</p>
 			</div>			
 			<div >
-				<button class="btn btn-danger">Desligar</button>		
-				<button class="btn btn-primary">Novo placar</button>
+				<button class="turnonoff-court btn btn-danger" data-status="on">Desligar quadra</button>
+				<button class="sport-add-result btn btn-disabled"><span class="icon-plus"></span> Resultado</button>
 			</div>
 		</div>
 	</div>
 </div>
 
 <div class="modal hide fade" id="change-sport-dialog">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal">×</button>
-		<h3>Mudar jogo</h3>
-	</div>
-	<div class="modal-body">
-		<p>Escolha o jogo</p>
-		
-		<div class="mdl-cell mdl-cell--12-col">
-			<ul class="demo-list-control mdl-list">
-			  <li class="mdl-list__item">
-			    <span class="mdl-list__item-primary-content">
-			      <img alt="" src="/img/bascketball_128.png" style="width:48px; heitgh:48px;"></img>&nbsp
-			      Basquete
-			    </span>
-			    <span class="mdl-list__item-secondary-action">
-			      <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-checkbox-1">
-			        <input type="radio" name="sportchoosing" class="mdl-radio__button" value="0" />
-			      </label>
-			    </span>
-			  </li>
-			  <li class="mdl-list__item">
-			    <span class="mdl-list__item-primary-content">
-			      <img alt="" src="/img/soccer_128.png" style="width:48px; heitgh:48px;"></img>&nbsp
-			      Futebol
-			    </span>
-			    <span class="mdl-list__item-secondary-action">
-			      <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-checkbox-1">
-			        <input type="radio" name="sportchoosing" class="mdl-radio__button" value="1" checked />
-			      </label>
-			    </span>
-			  </li>
-			  <li class="mdl-list__item">
-			    <span class="mdl-list__item-primary-content">
-			      <img alt="" src="/img/tennis_128.png" style="width:48px; heitgh:48px;"></img>&nbsp
-			      Tênis
-			    </span>
-			    <span class="mdl-list__item-secondary-action">
-			      <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-checkbox-1">
-			        <input type="radio" name="sportchoosing" class="mdl-radio__button" value="2" />
-			      </label>
-			    </span>
-			  </li>
-			  <li class="mdl-list__item">
-			    <span class="mdl-list__item-primary-content">
-			      <img alt="" src="/img/volleyball_128.png" style="width:48px; heitgh:48px;"></img>&nbsp
-			      Vôlei
-			    </span>
-			    <span class="mdl-list__item-secondary-action">
-			      <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-checkbox-1">
-			        <input type="radio" name="sportchoosing" class="mdl-radio__button" value="3"/>
-			      </label>
-			    </span>
-			  </li>
-  			</ul>
+	<div class="modal-dialog modal-lg">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>O que você quer jogar?</h3>
 		</div>
-	</div>
-	<div class="modal-footer hide">
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-		<a href="#" class="btn btn-primary">Save changes</a>
+		<div class="modal-body">
+			<div class="box-content">
+			  <div class="span3" onTablet="span2" onDesktop="span3">
+				<a class="quick-button metro orange btn-change-sport w3-card-2" data-dismiss="modal" data-sport="bascketball">
+					<img alt="" src="/img/bascketball_128.png"></img>
+					<p>Basquete</p>
+				</a>
+			  </div>
+			  <div class="span3" onTablet="span2" onDesktop="span3">
+				<a class="quick-button metro green btn-change-sport w3-card-2" data-dismiss="modal" data-sport="soccer">
+					<img alt="" src="/img/soccer_128.png"></img>
+					<p>Futebol</p>
+				</a>
+			  </div>
+			  <div class="span3" onTablet="span2" onDesktop="span3">
+				<a class="quick-button metro red btn-change-sport w3-card-2" data-dismiss="modal" data-sport="tennis">
+					<img alt="" src="/img/tennis_128.png"></img>
+					<p>Tênis</p>
+				</a>
+			  </div>
+			  <div class="span3" onTablet="span2" onDesktop="span3">
+				<a class="quick-button metro blue btn-change-sport w3-card-2" data-dismiss="modal" data-sport="volleyball">
+					<img alt="" src="/img/volleyball_128.png"></img>
+					<p>Vôlei</p>
+				</a>
+			  </div>
+			</div>
+		</div>
 	</div>
 </div>

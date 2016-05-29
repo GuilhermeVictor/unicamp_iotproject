@@ -1,9 +1,8 @@
 // app/routes.js
 
-
-
 module.exports = function(config, app, passport, render) {
-	var sidenavprovider = require('./utility/sidenavprovider')(passport);
+	var sidenavprovider = require('./utility/sidenavprovider')(passport);	
+	var arduinoserialport = require('./controllers/arduinoserialport')(config);
 	
 	//index
 	app.get('/', isLoggedIn, function (req, res) {		
@@ -13,12 +12,56 @@ module.exports = function(config, app, passport, render) {
 		});
 	});
 
-	//change sport call
-	app.post('/sports', function (req, res) {	
-		console.log(req);	
+	//turn on/off the court lights
+	app.post('/courtlight', isLoggedIn, function (req, res) {
+		var result = {};
 		
-		//TODO
-		arduinoPort.write(1); // mandar comando pra trocar a quadra
+		if (req.body.courtStatus == config.sports.off) {
+			arduinoserialport.setCourtLight(config.sports.on, function () {
+				result.courtStatus = config.sports.on;
+				postResult(res, 200, result);
+			});					
+			
+		} else {
+			arduinoserialport.setCourtLight(config.sports.off, function () {			
+				result.courtStatus = config.sports.off;
+				postResult(res, 200, result);
+			});			
+		}
+	});
+	
+	//change sport call
+	app.post('/changesport', isLoggedIn, function (req, res) {	
+		var result = {};
+		
+		if (req.body.sport == config.sports.tennis) {
+			arduinoserialport.setCourtLight(config.sports.tennis, function () {
+			
+				result.sport = config.sports.tennis;
+				postResult(res, 200, result);
+			});
+			
+		} else if (req.body.sport == config.sports.bascketball) {
+			arduinoserialport.setCourtLight(config.sports.bascketball, function () {
+			
+				result.sport = config.sports.bascketball;
+				postResult(res, 200, result);
+			});
+			
+		} else if (req.body.sport == config.sports.soccer) {
+			arduinoserialport.setCourtLight(config.sports.soccer, function () {
+			
+				result.sport = config.sports.soccer;
+				postResult(res, 200, result);
+			});
+			
+		} else {
+			arduinoserialport.setCourtLight(config.sports.volleyball, function () {
+			
+				result.sport = config.sports.volleyball;
+				postResult(res, 200, result);
+			});
+		}
 	});
 
 	//calendar
@@ -99,4 +142,9 @@ function isLoggedIn(req, res, next) {
 
     // if they aren't redirect them to the login page
     res.redirect('/login');
+}
+
+function postResult(res, code, data) {
+	res.status(code).send(JSON.stringify(JSON.stringify(data)));
+	res.end();
 }
