@@ -2,11 +2,14 @@
 function TemplateBuilder(config, fs, mustache) {	
 	this.fs = fs;
 	this.mustache = mustache;
+	this.config = config;
 	
 	this.blank = this.fs.readFileSync(config.appPath + '/views/layout/blank.mustache').toString();
 	this.main = this.fs.readFileSync(config.appPath + '/views/layout/main.mustache').toString();
 	this.header = this.fs.readFileSync(config.appPath + '/views/layout/header.mustache').toString();
 	this.navbar = this.fs.readFileSync(config.appPath + '/views/layout/navbar.mustache').toString();	
+	this.footer = this.fs.readFileSync(config.appPath + '/views/layout/footer.mustache').toString();	
+	this.breadcumb = this.fs.readFileSync(config.appPath + '/views/layout/breadcumb.mustache').toString();	
 }
 
 TemplateBuilder.prototype = {
@@ -15,11 +18,15 @@ TemplateBuilder.prototype = {
 
 		var partials = {};
 		
+		model.appname = this.config.appname;
+		
 		var content = this.fs.readFileSync(viewPath);
 		
-		var html = this.mustache.render(this.main, model, {
-			header: this.header,
+		var html = this.mustache.render(this.main, model, {			
+			header: this.header,			
 			navbar: this.navbar,
+			footer: this.footer,
+			breadcumb: this.breadcumb,
 			content: content.toString()
 		});
 		

@@ -1,13 +1,8 @@
 $(document).ready(function () {
 
-	var dialog = $('#sport-card-dialog')[0];	
-	dialogPolyfill.registerDialog(dialog);
-	
-	$('#sport-card-dialog-open').click(function () {
-		dialog.showModal();
+	$('.btn-change-sport').click(function(e){
+		e.preventDefault();
+		$('#change-sport-dialog').modal('show');
 	});
 	
-	$('#sport-card-dialog-close').click(function () {
-		dialog.close();
-	});
 });

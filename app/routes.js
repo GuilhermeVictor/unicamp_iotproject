@@ -1,26 +1,41 @@
 // app/routes.js
 
+
+
 module.exports = function(config, app, passport, render) {
+	var sidenavprovider = require('./utility/sidenavprovider')(passport);
 	
 	//index
-	app.get('/', isLoggedIn, function (req, res) {	
-		var html = render.view(config.appPath + '/views/index.mustache', {});
-		res.send(html);
+	app.get('/', isLoggedIn, function (req, res) {		
+		sidenavprovider.getBasePageModel(req, 'home', function (model) {
+			var html = render.view(config.appPath + '/views/index.mustache', model);
+			res.send(html);		
+		});
 	});
 
 	//change sport call
 	app.post('/sports', function (req, res) {	
 		console.log(req);	
+		
+		//TODO
 		arduinoPort.write(1); // mandar comando pra trocar a quadra
 	});
 
+	//calendar
+	app.get('/calendar', isLoggedIn, function (req, res) {
+		sidenavprovider.getBasePageModel(req, 'calendar', function (model) {
+			var html = render.view(config.appPath + '/views/calendar.mustache', model);
+			res.send(html);		
+		});
+	});	
+	
     // route for the login form
     app.get('/login', function(req, res) {	
         // render the page and pass in any flash data if it exists
 		var message = req.flash('loginMessage') + '';		
 		var hasMessage = (message != '');		
         
-		var html = render.view_main(config.appPath + '/views/login.html', { hasMessage: hasMessage, message: message});
+		var html = render.view_main(config.appPath + '/views/login.mustache', { hasMessage: hasMessage, message: message});
 		res.send(html);
     });
 	

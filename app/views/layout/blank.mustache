@@ -4,7 +4,7 @@
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>azuland!</title>	
+	<title>{{appname}}</title>	
 	<!-- end: Meta -->
 	
 	<!-- start: Mobile Specific -->
@@ -32,16 +32,13 @@
 		
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
-	<!-- end: Favicon -->
-	
-	<style type="text/css">
-		body { background: url(img/cloud-bg.png) !important; }
-	</style>
+	<!-- end: Favicon -->	
 </head>
 
 <body>
-	<div class="container-fluid-full">
-		<div class="row-fluid">
+	<div class="blank-background-image"></div>
+	<div class="container-fluid-full">		
+		<div class="row-fluid blank-content">
 			{{>content}}			
 		</div><!--/.fluid-container-->	
 	</div><!--/fluid-row-->		
