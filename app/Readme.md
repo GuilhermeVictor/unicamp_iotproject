@@ -41,6 +41,10 @@ exit`
 ##Node JS
 Instale [Node](https://nodejs.org/en/download/) 
 
+Instale as dependencias para o app funcionar executando no terminal:
+`install.bat `  ou  
+`./install.sh`
+
 Dentro dessa pasta, execute no terminal:  
 `start.bat `  ou  
 `./start.sh`

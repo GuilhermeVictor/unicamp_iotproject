@@ -1,0 +1,15 @@
+start cmd.exe /c npm install bcrypt-nodejs@0.0.3
+start cmd.exe /c npm install body-parser@1.15.1
+start cmd.exe /c npm install connect-flash@0.1.1
+start cmd.exe /c npm install cookie-parser@1.4.2
+start cmd.exe /c npm install dialog-polyfill@0.4.3
+start cmd.exe /c npm install express@4.13.4
+start cmd.exe /c npm install express-session@1.13.0
+start cmd.exe /c npm install google-auth-library@0.9.8
+start cmd.exe /c npm install googleapis@7.1.0
+start cmd.exe /c npm install mongoose@4.4.19
+start cmd.exe /c npm install morgan@1.7.0
+start cmd.exe /c npm install mustache@2.2.1
+start cmd.exe /c npm install passport@0.3.2
+start cmd.exe /c npm install passport-google-oauth@1.0.0
+start cmd.exe /c npm install serialport@3.1.2-beta1
