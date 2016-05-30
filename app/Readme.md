@@ -9,7 +9,6 @@ Obs: **Não** configure as pastas de dados nem de binários dentro do repositór
 * Se estiver faltando SSLEAY32.dll
 baixe e instale Win32 [OpenSSL](https://slproweb.com/products/Win32OpenSSL.html)
 
-
 ##MongoDB Users
 
 Abra um terminal, (para linux abra dentro da pasta do mongodb):  
@@ -34,21 +33,20 @@ db.createUser({user:"azulloft", pwd:"mc426", roles:["readWrite"]});
 exit`
 
 ##DNS
-1 - Configure a seguinte entrada de dns na sua máquina:
-127.0.0.1 azulloft.com
+Configure a seguinte entrada de dns na sua máquina:  
 
+* 127.0.0.1 azulloft.com
 
 ##Node JS
 Instale [Node](https://nodejs.org/en/download/) 
 
-Instale as dependencias para o app funcionar executando no terminal:
+Instale as dependencias para o app funcionar executando no terminal:  
 `install.bat `  ou  
 `./install.sh`
 
-Dentro dessa pasta, execute no terminal:  
+Dentro dessa pasta, execute no terminal:   
 `start.bat `  ou  
-`./start.sh`
-
+`./linux-start.sh /Path/to/mongodb/folder`
 
 ##Finalmente
 Acesse o [site](http://azulloft.com:8081/)

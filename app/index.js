@@ -30,7 +30,10 @@ var render = templatebuilder(config, fs, mustache);
 app.set('view engine', 'mustache'); // set up mustache for templating
 //app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json()); // get information from html forms
 app.use(express.static(config.appPath + '/static_content'));
 
 // required for passport
