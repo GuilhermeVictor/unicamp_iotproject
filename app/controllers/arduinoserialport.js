@@ -1,5 +1,5 @@
 function showPortOpen() {
-   console.log('port open. Data rate: ' + myPort.options.baudRate);
+   //console.log('port open. Data rate: ' + myPort.options.baudRate);
 }
  
 function sendSerialData(data) {
@@ -29,7 +29,7 @@ function ArduinoSerialPortController(config) {
 		parity: 'none',
 		stopBits: 1,
 		flowControl: false,
-		parser: serialport.parsers.readline("\r\n")
+		parser: serialport.parsers.readline("\n")
 	});
 	
 	sp.on('open', showPortOpen);
