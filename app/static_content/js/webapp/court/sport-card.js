@@ -1,14 +1,3 @@
-var card = undefined;
-
-$(document).ready(function () {
-	
-	card = new SportCard($('.sport-card'));
-	
-	/* 
-	 * Configura o card da quadra
-	 */	
-	
-});
 
 function SportCard($el) {
 	this.$el = $el;
@@ -61,37 +50,42 @@ function SportCard($el) {
 	this.$el.find('.btn-change-sport').click(function(e){
 		e.preventDefault();
 		
-		var $modal = $('#change-sport-dialog');
+		var status = card.$el.find('.turnonoff-court').attr('data-status');
 		
-		$modal.modal('show');
-		$modal.find('.btn-change-sport').unbind('click');
-		$modal.find('.btn-change-sport').click(function () {
-			e.preventDefault();
-		
-			var sport = $(this).attr('data-sport');
+		if (status == card.courtStatus.on.name) {
+						
+			var $modal = $('#change-sport-dialog');
 			
-			var data = {};
-			data.sport = sport;
-							
-			$.ajax({
-				type: 'POST',
-				url: '/changesport',
-				async: false,
-				dataType: 'json',
-				contentType: 'application/json',
-				data: JSON.stringify(data),
-				error: function(err) {
-					console.log(err);
-					//TODO alert
-				},
-				success: function (data) {
-					data = jQuery.parseJSON(data);
-					console.log(data);
-					card.setSport(data.sport);
-					card.updateSport();
-				}
-			});
-		});
+			$modal.modal('show');
+			$modal.find('.btn-change-sport').unbind('click');
+			$modal.find('.btn-change-sport').click(function () {
+				e.preventDefault();
+			
+				var sport = $(this).attr('data-sport');
+				
+				var data = {};
+				data.sport = sport;
+								
+				$.ajax({
+					type: 'POST',
+					url: '/changesport',
+					async: false,
+					dataType: 'json',
+					contentType: 'application/json',
+					data: JSON.stringify(data),
+					error: function(err) {
+						console.log(err);
+						//TODO alert
+					},
+					success: function (data) {
+						data = jQuery.parseJSON(data);
+						console.log(data);
+						card.setSport(data.sport);
+						card.updateSport();
+					}
+				});
+			});			
+		}
 	});
 	
 	this.$el.find('.turnonoff-court').click(function(e) {

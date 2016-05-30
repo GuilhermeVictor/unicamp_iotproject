@@ -50,7 +50,7 @@ ArduinoSerialPortController.prototype = {
 			write(config.arduino.courtTurnOn, this.sp);
 			
 		} else if (status == config.sports.off) {
-			write(config.arduino.courtTurnOn, this.sp);
+			write(config.arduino.courtTurnOff, this.sp);
 		}
 		
 		done(true);

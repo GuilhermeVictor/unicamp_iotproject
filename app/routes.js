@@ -35,28 +35,28 @@ module.exports = function(config, app, passport, render) {
 		var result = {};
 		
 		if (req.body.sport == config.sports.tennis) {
-			arduinoserialport.setCourtLight(config.sports.tennis, function () {
+			arduinoserialport.setCourtSport(config.sports.tennis, function () {
 			
 				result.sport = config.sports.tennis;
 				postResult(res, 200, result);
 			});
 			
 		} else if (req.body.sport == config.sports.bascketball) {
-			arduinoserialport.setCourtLight(config.sports.bascketball, function () {
+			arduinoserialport.setCourtSport(config.sports.bascketball, function () {
 			
 				result.sport = config.sports.bascketball;
 				postResult(res, 200, result);
 			});
 			
 		} else if (req.body.sport == config.sports.soccer) {
-			arduinoserialport.setCourtLight(config.sports.soccer, function () {
+			arduinoserialport.setCourtSport(config.sports.soccer, function () {
 			
 				result.sport = config.sports.soccer;
 				postResult(res, 200, result);
 			});
 			
 		} else {
-			arduinoserialport.setCourtLight(config.sports.volleyball, function () {
+			arduinoserialport.setCourtSport(config.sports.volleyball, function () {
 			
 				result.sport = config.sports.volleyball;
 				postResult(res, 200, result);

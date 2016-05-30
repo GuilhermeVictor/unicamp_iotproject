@@ -11,6 +11,7 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
+//var redis        = require('connect-redis')(express);
 
 var templatebuilder = require('./utility/templatebuilder')
 var config = require('./config/config');
@@ -37,7 +38,15 @@ app.use(bodyParser.json()); // get information from html forms
 app.use(express.static(config.appPath + '/static_content'));
 
 // required for passport
-app.use(session({ 
+app.use(session({
+  // TODO colocar sessao no redis para nao perder sessao quando restartar o app   
+  // store: new RedisStore({
+  //   host: 'localhost',
+  //   port: 6379,
+  //   db: 2,
+  //   pass: 'RedisPASS'
+  // }),
+  // cookie: { maxAge: 1200 },
 	secret: '879Uhas789Hnuiaoiqwue8712asSidA',
 	resave: false,
     saveUninitialized: false
@@ -45,6 +54,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+
+// kill sessao do usuario a cada X minutos
+// app.use(function(req, res, next) {
+//   if (now() > req.session.cookie.expires) {
+//     req.session = null;
+//     req.session.destroy();
+//   }  
+  
+//   next();
+// });
 
 // configuracoes
 mongoose.connect(configDB.url); // connect to our database
