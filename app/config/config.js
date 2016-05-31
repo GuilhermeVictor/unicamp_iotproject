@@ -20,13 +20,13 @@ config.sports.volleyball = 'volleyball';
 /* Arduino settings */
 config.arduino = {};
 
-config.arduino.portName = '/dev/ttyACM1'; // you can get this value from Arduino IDE > Tools > Serial Port.
-config.arduino.courtTurnOn = '0';
-config.arduino.courtTurnOff = '4';
-config.arduino.courtSportTennis = '1';
-config.arduino.courtSportBascketball = '0';
-config.arduino.courtSportSoccer = '3';
-config.arduino.courtSportVolleyball = '2';
+config.arduino.portName = '/dev/ttyACM0'; // you can get this value from Arduino IDE > Tools > Serial Port.
+config.arduino.courtTurnOn = '1';
+config.arduino.courtTurnOff = '0';
+config.arduino.courtSportTennis = '2';
+config.arduino.courtSportBascketball = '3';
+config.arduino.courtSportSoccer = '4';
+config.arduino.courtSportVolleyball = '5';
 
 	
 module.exports = config;
