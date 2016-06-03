@@ -50,3 +50,20 @@ Dentro dessa pasta, execute no terminal:
 
 ##Finalmente
 Acesse o [site](http://azulloft.com:8081/)
+
+##Conectar ao RPi
+
+Configure o DNS dessa maneira (/etc/hosts/ ou C:/Windows/System32/drivers/etc/hosts):
+* 152.249.238.194 azulloft.com
+
+Utilizando um cliente SSH:
+- Conecte a azulloft.com:22
+	User: pi
+	Senha: azulloft
+
+Comandos:
+	`pm2 restart index`: Reinicia o servidor
+	`pm2 stop index`: Para o servidor (útil caso queira rodar manualmente para ver os outputs)
+
+Senha da chave do Git, para dar `git pull`:
+	azulloft
