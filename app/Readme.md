@@ -58,12 +58,12 @@ Configure o DNS dessa maneira (/etc/hosts/ ou C:/Windows/System32/drivers/etc/ho
 
 Utilizando um cliente SSH:
 - Conecte a azulloft.com:22
-	User: pi
-	Senha: azulloft
+- User: pi
+- Senha: azulloft
 
 Comandos:
-	`pm2 restart index`: Reinicia o servidor
-	`pm2 stop index`: Para o servidor (útil caso queira rodar manualmente para ver os outputs)
+- `pm2 restart index`: Reinicia o servidor
+- `pm2 stop index`: Para o servidor (útil caso queira rodar manualmente para ver os outputs)
 	
 Senha da chave do Git, para dar `git pull`:
-	azulloft
+- azulloft
