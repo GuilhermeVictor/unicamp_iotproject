@@ -12,6 +12,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 //var redis        = require('connect-redis')(express);
+var cron 		 = require('node-cron');
 
 var templatebuilder = require('./utility/templatebuilder')
 var config = require('./config/config');
@@ -72,4 +73,9 @@ routes(config, app, passport, render);
 //inicia servico
 app.listen(config.port, function () {
   console.log('Example app listening on port ' + config.port + '!');
+});
+
+//running a task every two minutes
+cron.schedule('*/2 * * * *', function(){
+  console.log('running a task every two minutes');
 });

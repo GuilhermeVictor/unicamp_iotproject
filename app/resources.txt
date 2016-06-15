@@ -13,3 +13,8 @@ http://mongoosejs.com/
 https://scotch.io/tutorials/easy-node-authentication-google
 
 janux-free-responsive-admin-dashboard-template
+
+
+http://merencia.com/node-cron/
+https://www.npmjs.com/package/signalr-client
+http://eonasdan.github.io/bootstrap-datetimepicker/

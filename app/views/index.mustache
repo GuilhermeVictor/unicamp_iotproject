@@ -1,4 +1,10 @@
-<div style="">
+<style>
+	#content > .row-fluid {
+		margin-bottom: 20px
+	}
+</style>
+
+<div class="row-fluid">
 	<div class="sport-card w3-card-2 span4" onTablet="span6" onDesktop="span4">
 		<div class="row-fluid">
 			<a class="quick-button metro green btn-change-sport" data-sport="soccer">
@@ -23,8 +29,8 @@
 	</div>
 </div>
 
-<div>
-	<div class="sport-card w3-card-2 span4" onTablet="span6" onDesktop="span4" style="margin-left: 25px;">
+<div class="row-fluid">
+	<div class="sport-card w3-card-2 span4" onTablet="span6" onDesktop="span4">
 		<div class="row-fluid" >
 			<a class="quick-button metro green btn-change-sport" data-sport="soccer">
 				<img alt="" src="img/soccer_128.png"></img>
@@ -39,7 +45,16 @@
 				<p>
 					Você pode usar a quadra até 18h.
 				</p>
-			</div>			
+			</div>
+			<div class="control-group">
+				<div id="datetimepicker1" class="datetimepicker1"> </div>
+                <!-- <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div> -->
+            </div>
 			<div >
 				<button class="turnonoff-court btn btn-success" data-status="off">Ligar quadra</button>
 				<button class="sport-add-result btn btn-disabled"><span class="icon-plus"></span> Resultado</button>
@@ -47,6 +62,7 @@
 		</div>
 	</div>
 </div>
+
 
 <div class="modal hide fade" id="change-sport-dialog">
 	<div class="modal-dialog modal-lg">

@@ -13,3 +13,4 @@ start cmd.exe /c npm install mustache@2.2.1
 start cmd.exe /c npm install passport@0.3.2
 start cmd.exe /c npm install passport-google-oauth@1.0.0
 start cmd.exe /c npm install serialport@3.1.2-beta1
+start cmd.exe /c npm install node-cron@1.1.1

@@ -555,6 +555,11 @@ border-bottom: 1px solid transparent;
 	content: '';
 }
 
+.datetimepicker:after,
+.datetimepicker:before  {
+	content: none !important;
+}
+
 .dropdown-menu {
 	border-top: 5px solid transparent;
   	position: absolute;

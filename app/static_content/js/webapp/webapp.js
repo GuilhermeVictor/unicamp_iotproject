@@ -9,4 +9,18 @@ $(document).ready(function () {
 	
 	card.updateSport();
 	card.updateLight();
+	
+	
+	
+	
+});
+
+
+$(function () {
+	$('.datetimepicker1').datetimepicker({
+        locale:  'pt-br',
+		inline: true,
+		sideBySide: true
+        
+    });
 });
