@@ -1,0 +1,64 @@
+.squared
+{
+	border-radius: 0px;
+}
+
+.navbar-blue
+{
+	background-color: #39759F;
+	border-color: #39759F;
+}
+
+#content
+{
+	padding: 10px;
+}
+
+.nav-font-caio
+{
+	font-size: 18px;
+}
+
+.dropdown-menu-caio > li:hover > a
+{
+	/*hover do menu da tabela*/
+}
+
+.nav.navbar-nav.navbar-right.nav-caio > li:hover > a
+{
+	color: #000000;
+}
+
+.nav-caio.navbar-nav > li > a
+{
+	color: #FFFFFF;
+}
+
+.nav-caio.navbar-brand:hover
+{
+	color: #000000;
+}
+
+.nav-caio.navbar-brand
+{
+	color: #FFFFFF;
+}
+
+#content
+{
+	padding: 10px;
+}
+
+.btn-primary.btn-caio
+{
+	background-color: #FF8D3E;
+	border-color: #000;
+	color: #000;
+}
+
+.btn-primary.btn-caio:hover
+{
+	background-color: #EC7522;
+	border-color: #000;
+	color: #000;
+}
