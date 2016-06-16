@@ -1,5 +1,19 @@
-<div class="row-fluid">
+<div class="row-fluid row-fluid-tasks">
+	<style>
 	
+	@media (max-width: 767px) {
+		.row-fluid-tasks [class*="span"] {
+			margin-left: 0 !important;
+		}
+	}
+	
+	@media (min-width: 768px) {
+		.row-fluid-tasks [class*="span"] {
+			margin-left: 10px !important;		
+		}
+	}
+	
+	</style>
 	{{#tasks}}		
 		<div class="scheduled-card w3-card-2 span4 {{#isEnabled}} active{{/isEnabled}}" onTablet="span6" onDesktop="span4">
 			<div class="box-content">
