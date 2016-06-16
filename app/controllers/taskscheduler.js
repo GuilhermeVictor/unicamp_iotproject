@@ -1,5 +1,6 @@
-var moment 		 	= require('moment');
-var Task 			= require('../models/task');
+var moment 		 		= require('moment');
+var removeDiacritics 	= require('diacritics').remove;
+var Task 				= require('../models/task');
 		
 function getTaskDescription(config, command) {	
 	if (config.commands.curtain.open.name == command)
@@ -62,7 +63,7 @@ TaskSchedulerController.prototype = {
 		
 		Task.find({
 			isDeleted : false,
-			date : { $gt : moment().utc() }
+			date : { $gt : moment() }
 		})
 		.sort({date: 1})
 		.exec(function (err, tasks) {
@@ -85,6 +86,50 @@ TaskSchedulerController.prototype = {
 			done(false, model);
 		});
 		
+	},
+	
+	doCommandJob: function (done) {
+		var config = this.config;
+		
+		var now = moment().set({ second: 0, millisecond: 0 });
+						
+		var time = now.format('HH:mm');
+		
+		var week = removeDiacritics(now.locale(config.locale).format('ddd').toLowerCase());
+		
+		console.log(now.format());
+		
+		Task.find({
+			isDeleted: false,
+			$or: [{ 
+				hasRepeat: true,
+				repeat: { 
+					$elemMatch: { name: week, checked: true } 
+				},
+				time: time
+			}, {
+				hasRepeat: false,
+				date: { 
+					$gte: now.format(),
+					$lte: now.add(59, 's').format(),					
+				}
+			}]
+		})			
+		.exec(function (err, tasks) {
+			
+			if (err)
+				done(err);								
+			
+			tasks.forEach(function(task){
+				
+				//do command
+				console.log('Do task:');
+				console.log(task);
+				
+			});
+			
+			done(false);
+		});		
 	}
 }
 

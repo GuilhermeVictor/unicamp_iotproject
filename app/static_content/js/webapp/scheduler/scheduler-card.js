@@ -34,7 +34,9 @@ function initCommandControls() {
 		$modal.find('.btn-schedule-command').attr('data-command', command);
 		
 		$modal.find('.schedule-command-btn-day').removeClass('btn-danger');
-				
+		
+		$modal.find('.schedule-command-btn-day>input').val('false');
+		
 		$modal.find('.schedule-command-btn-day').unbind('click');
 		$modal.find('.schedule-command-btn-day').click(function (e) {
 			e.preventDefault();
@@ -50,6 +52,8 @@ function initCommandControls() {
 				$(this).addClass('btn-danger');
 			}
 		});
+		
+		$modal.find('.datetimepicker').datetimepicker('update', moment());
 		
 		$modal.find('.btn-schedule-command').unbind('click');
 		$modal.find('.btn-schedule-command').click(function (e) {
@@ -87,13 +91,14 @@ function initCommandControls() {
 			// se nao configurou a repeticao de dias, e a hora ja passou, o alarme fica para amanha
 			if (!data.hasRepeat) {
 										
-				if (moment().isAfter(moment(date.add(1, 'm')))) {
+				if (moment().isAfter(date)) {
 					//alarme fica para amanha
 					date = date.add(1, 'day');
 				}
 			}
 			
-			data.date = date;
+			data.date = date.utc();
+			data.time = date.utc().format('HH:mm');
 			
 			$.ajax({
 				type: 'POST',

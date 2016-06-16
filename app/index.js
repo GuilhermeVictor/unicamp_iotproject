@@ -12,12 +12,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 //var redis      = require('connect-redis')(express);
-var cron 		 = require('node-cron');
+var schedule	 = require('node-schedule');
+var moment       = require('moment');
 
 var templatebuilder = require('./utility/templatebuilder')
-var config = require('./config/config');
-var routes = require('./routes');
-var configDB = require('./config/database.js');
+var config 			= require('./config/config');
+var routes 			= require('./routes');
+var configDB 		= require('./config/database.js');
+var taskScheduler 	= require('./controllers/taskscheduler')(config);
 
 require('./config/passport')(passport); // passa passport para ser configurado
 
@@ -68,6 +70,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // configuracoes
 mongoose.connect(configDB.url); // connect to our database
+mongoose.set('debug', true);
 routes(config, app, passport, render);
 
 //inicia servico
@@ -76,6 +79,12 @@ app.listen(config.port, function () {
 });
 
 //running a task every two minutes
-cron.schedule('*/2 * * * *', function(){
-  console.log('running a task every two minutes');
+schedule.scheduleJob({ second : 0 }, function() {
+	
+	taskScheduler.doCommandJob(function (err) {
+		if (err)
+			throw err;
+		
+		console.log('Command job executed at ' + moment().locale('pt-BR').format() + '.');
+	});
 });

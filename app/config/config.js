@@ -5,6 +5,7 @@ var config = {};
 config.url = 'http://azulloft.com:8081'
 config.appname = 'Azulloft'
 
+config.locale = 'pt-BR';
 
 /* Sport settings */
 config.sports = {};

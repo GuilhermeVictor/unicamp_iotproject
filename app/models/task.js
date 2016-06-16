@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var taskSchema = mongoose.Schema({
 	id			: mongoose.Schema.ObjectId,
 	isEnabled	: Boolean,
-	isDeleted	: Boolean,	
+	isDeleted	: Boolean,		
 	command		: { type: String, lowercase: true },
 	hasRepeat	: Boolean,
 	repeat		: Array,	
