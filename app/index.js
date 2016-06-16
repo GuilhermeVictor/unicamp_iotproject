@@ -72,7 +72,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // configuracoes
 mongoose.connect(configDB.url); // connect to our database
-mongoose.set('debug', true);
+//mongoose.set('debug', true);
 routes(config, app, passport, render, arduinoserialport, taskScheduler);
 
 //inicia servico

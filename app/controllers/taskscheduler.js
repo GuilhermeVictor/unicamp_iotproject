@@ -105,7 +105,7 @@ TaskSchedulerController.prototype = {
 					_id: task._id,
 					description: getTaskDescription(config, task.command),
 					img: getTaskImage(config, task.command),
-					time: task.time,
+					time: moment(task.date).locale(config.locale).format('HH:mm'),
 					weekDays: getWeekDays(config, task)
 				});
 			});
@@ -164,8 +164,8 @@ TaskSchedulerController.prototype = {
 			tasks.forEach(function(task){
 				
 				//do command
-				console.log('Do task:');
-				console.log(task);
+				console.log('Do task: ' + task.command);
+				//console.log(task);
 				
 				var command = task.command;
 				
