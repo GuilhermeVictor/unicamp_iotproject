@@ -64,6 +64,23 @@ module.exports = function(config, app, passport, render) {
 		}
 	});
 
+	app.post('/docommand', isLoggedIn, function (req, res) {	
+		var result = {};
+		
+		if (req.body.command == config.commands.curtain.open) {
+			arduinoserialport.setCurtainStatus(config.commands.curtain.open, function () {
+							
+				postResult(res, 200, null);
+			});
+			
+		} else if (req.body.command == config.commands.curtain.close) {
+			arduinoserialport.setCurtainStatus(config.commands.curtain.close, function () {
+							
+				postResult(res, 200, null);
+			});
+		} 		
+	});
+	
 	//calendar
 	app.get('/calendar', isLoggedIn, function (req, res) {
 		sidenavprovider.getBasePageModel(req, 'calendar', function (model) {

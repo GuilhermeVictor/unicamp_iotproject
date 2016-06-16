@@ -73,6 +73,28 @@ ArduinoSerialPortController.prototype = {
 		}
 		
 		done(true);
+	},
+	
+	//abre/fecha a cortina
+	setCurtainStatus: function (command, done) {
+		var config = this.config;
+		
+		if (command == config.commands.curtain.open) {
+			write(config.arduino.curtainOpen, this.sp);
+			
+		} else if (command == config.commands.curtain.close) {
+			write(config.arduino.curtainClose, this.sp);
+		}
+		
+		done(true);
+	},
+	
+	//toca o buzzer
+	buzz: function (done) {
+		
+		write(config.arduino.doBuzz, this.sp);
+		
+		done(true);
 	}
 }
 

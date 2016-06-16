@@ -21,10 +21,7 @@ function initCommandControls() {
 				//TODO alert
 			},
 			success: function (data) {
-				data = jQuery.parseJSON(data);
-				console.log(data);
-				card.setCommand(data.command);
-				card.updateCard();
+				console.log('ok');
 			}
 		});
 	});
