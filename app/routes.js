@@ -3,6 +3,7 @@
 module.exports = function(config, app, passport, render) {
 	var sidenavprovider = require('./utility/sidenavprovider')(passport);	
 	var arduinoserialport = require('./controllers/arduinoserialport')(config);
+	var taskScheduler = require('./controllers/taskscheduler')(config);
 	
 	//index
 	app.get('/', isLoggedIn, function (req, res) {		
@@ -67,18 +68,19 @@ module.exports = function(config, app, passport, render) {
 	app.post('/docommand', isLoggedIn, function (req, res) {	
 		var result = {};
 		
-		if (req.body.command == config.commands.curtain.open) {
-			arduinoserialport.setCurtainStatus(config.commands.curtain.open, function () {
+		arduinoserialport.setCurtainStatus(req.body.command, function () {
 							
-				postResult(res, 200, null);
-			});
+			postResult(res, 200, null);
+		});			
+	});
+	
+	app.post('/schedulecommand', isLoggedIn, function (req, res) {	
+				
+		taskScheduler.addTask(req.body, function (task) {
 			
-		} else if (req.body.command == config.commands.curtain.close) {
-			arduinoserialport.setCurtainStatus(config.commands.curtain.close, function () {
-							
-				postResult(res, 200, null);
-			});
-		} 		
+			postResult(res, 200, task);			
+		});			
+		
 	});
 	
 	//calendar
@@ -92,8 +94,15 @@ module.exports = function(config, app, passport, render) {
 	//schedulers
 	app.get('/scheduler', isLoggedIn, function (req, res) {
 		sidenavprovider.getBasePageModel(req, 'time', function (model) {
-			var html = render.view(config.appPath + '/views/schedule.mustache', model);
-			res.send(html);		
+			
+			taskScheduler.getAllFutureTasks(model, function (err, model) {
+				
+				if(err)
+					throw err;
+				
+				var html = render.view(config.appPath + '/views/schedule.mustache', model);
+				res.send(html);		
+			});									
 		});
 	});	
 	

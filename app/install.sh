@@ -15,3 +15,4 @@ npm install passport@0.3.2
 npm install passport-google-oauth@1.0.0
 npm install serialport@3.1.2-beta1
 npm install node-cron@1.1.1
+npm install moment@2.13.0

@@ -28,6 +28,7 @@ $(function () {
 			date: "icon-calendar icon-2x",
 			up: "icon-angle-up icon-4x",
 			down: "icon-angle-down icon-4x"
-		}
+		},
+		defaultDate: new Date(moment())
     });
 });

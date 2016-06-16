@@ -79,10 +79,10 @@ ArduinoSerialPortController.prototype = {
 	setCurtainStatus: function (command, done) {
 		var config = this.config;
 		
-		if (command == config.commands.curtain.open) {
+		if (command == config.commands.curtain.open.name) {
 			write(config.arduino.curtainOpen, this.sp);
 			
-		} else if (command == config.commands.curtain.close) {
+		} else if (command == config.commands.curtain.close.name) {
 			write(config.arduino.curtainClose, this.sp);
 		}
 		

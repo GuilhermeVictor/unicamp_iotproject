@@ -11,7 +11,7 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
-//var redis        = require('connect-redis')(express);
+//var redis      = require('connect-redis')(express);
 var cron 		 = require('node-cron');
 
 var templatebuilder = require('./utility/templatebuilder')

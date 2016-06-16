@@ -17,9 +17,24 @@ config.sports.soccer = 'soccer';
 config.sports.volleyball = 'volleyball';
 
 config.commands = {};
-config.commands.curtain = {};
-config.commands.curtain.open = 'curtain_open';
-config.commands.curtain.close = 'curtain_close';
+config.commands.curtain = {
+	open: {
+		name: 'curtain_open',
+		description: 'Abrir cortinas',
+		img: '/img/curtains_bathroom-128.png'
+	},
+
+	close: {
+		name: 'curtain_close',
+		description: 'Fechar cortinas',
+		img: '/img/curtains_bathroom-close-128.png'
+	}
+};
+config.commands.alarm = {	
+	name: 'alarm',
+	description: 'Tocar despertador',
+	img: '/img/clock_32.png'	
+};
 
 /* Arduino settings */
 config.arduino = {};

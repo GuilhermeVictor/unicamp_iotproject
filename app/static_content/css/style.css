@@ -3074,8 +3074,22 @@ ul.messagesList li span.date {
 	
 }
 
+.scheduled-card-image  {
+	max-width: 32px;
+	max-height: 32px;
+}
+
 .scheduled-card-table {
 	
 	width: 100%;
 	font-size: 14px !important;
+}
+
+.scheduled-card-image-tr {
+	width: 20%;
+}
+
+.schedule-command-btn-day {
+	padding: 4px 6px !important;
+	min-width: 14px;
 }
