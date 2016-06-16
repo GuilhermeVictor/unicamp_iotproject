@@ -357,9 +357,9 @@
                         template.append(toolbar);
                     }
                     template.append(
-                        $('<div>').addClass('row')
-                            .append(dateView.addClass('col-md-6'))
-                            .append(timeView.addClass('col-md-6'))
+                        $('<div>').addClass('row-fluid')
+                            .append(dateView.addClass('span6'))
+                            .append(timeView.addClass('span6'))
                     );
                     if (options.toolbarPlacement === 'bottom') {
                         template.append(toolbar);

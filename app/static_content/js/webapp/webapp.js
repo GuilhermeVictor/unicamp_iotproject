@@ -1,4 +1,5 @@
 var card = undefined;
+var scard = undefined;
 
 $(document).ready(function () {
 	
@@ -11,16 +12,22 @@ $(document).ready(function () {
 	card.updateLight();
 	
 	
-	
+	initCommandControls();
 	
 });
 
 
 $(function () {
-	$('.datetimepicker1').datetimepicker({
+	$('.datetimepicker').datetimepicker({
         locale:  'pt-br',
 		inline: true,
-		sideBySide: true
-        
+		format: 'LT',
+		//sideBySide: true,
+		icons: {
+			time: "icon-time icon-2x",
+			date: "icon-calendar icon-2x",
+			up: "icon-angle-up icon-4x",
+			down: "icon-angle-down icon-4x"
+		}
     });
 });
