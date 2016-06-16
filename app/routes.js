@@ -89,6 +89,14 @@ module.exports = function(config, app, passport, render) {
 		});
 	});	
 	
+	//schedulers
+	app.get('/scheduler', isLoggedIn, function (req, res) {
+		sidenavprovider.getBasePageModel(req, 'time', function (model) {
+			var html = render.view(config.appPath + '/views/schedule.mustache', model);
+			res.send(html);		
+		});
+	});	
+	
     // route for the login form
     app.get('/login', function(req, res) {	
         // render the page and pass in any flash data if it exists

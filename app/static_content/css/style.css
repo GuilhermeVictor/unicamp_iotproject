@@ -3073,3 +3073,9 @@ ul.messagesList li span.date {
 	margin-bottom: 0 !important;
 	
 }
+
+.scheduled-card-table {
+	
+	width: 100%;
+	font-size: 14px !important;
+}
