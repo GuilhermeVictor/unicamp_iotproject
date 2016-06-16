@@ -138,7 +138,7 @@ TaskSchedulerController.prototype = {
 		
 		var week = removeDiacritics(now.locale(config.locale).format('ddd').toLowerCase());
 		
-		console.log(now.format());
+		//console.log(now.format());
 		
 		Task.find({
 			isDeleted: false,
