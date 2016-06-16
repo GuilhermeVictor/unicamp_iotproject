@@ -14,7 +14,6 @@ $(document).ready(function () {
 	
 	initCommandControls();
 	
-	$.support.transition = false;
 });
 
 
