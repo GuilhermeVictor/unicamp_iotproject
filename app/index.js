@@ -29,6 +29,8 @@ config.port = 8081;
 
 var app = express();
 var render = templatebuilder(config, fs, mustache);
+var arduinoserialport = require('./controllers/arduinoserialport')(config);
+var taskScheduler = require('./controllers/taskscheduler')(config, arduinoserialport);
 
 // set up our express application
 app.set('view engine', 'mustache'); // set up mustache for templating
@@ -71,13 +73,13 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // configuracoes
 mongoose.connect(configDB.url); // connect to our database
 mongoose.set('debug', true);
-routes(config, app, passport, render);
+routes(config, app, passport, render, arduinoserialport, taskScheduler);
 
 //inicia servico
 app.listen(config.port, function () {
   console.log('Example app listening on port ' + config.port + '!');
 });
-
+	
 //running a task every two minutes
 schedule.scheduleJob({ second : 0 }, function() {
 	

@@ -1,7 +1,8 @@
 var moment 		 		= require('moment');
 var removeDiacritics 	= require('diacritics').remove;
+
 var Task 				= require('../models/task');
-		
+
 function getTaskDescription(config, command) {	
 	if (config.commands.curtain.open.name == command)
 		return config.commands.curtain.open.description;
@@ -28,13 +29,35 @@ function getTaskImage(config, command) {
 	throw 'Invalid command "' + command + '" at getTaskImage';
 }
 
-function getWeekDays(config, hasRepeat, repeat) {
-	return 'teste';
+function getWeekDays(config, task, hasRepeat, repeat) {
+	var result = '';
+	
+	if (task.hasRepeat) {
+		for(var i = 0; i < 7; i++) {			
+			if (task.repeat[i].checked == true) {				
+				result = result + ', ' + moment().day(i).locale(config.locale).format('ddd').toLowerCase();
+			}
+		}
+		result = result.substring(2);
+	}
+	else {
+		
+		if (moment().day() == moment(task.date).day()) {
+			result = 'hoje'
+		}
+		else {
+			result = 'amanhã'
+		}
+	}
+	
+	return result;
 }
 
-function TaskSchedulerController(config) {
-	this.config = config;
+function TaskSchedulerController(config, arduinoserialport) {
+	this.config = config;	
+	this.arduinoserialport = arduinoserialport;
 }
+
 
 TaskSchedulerController.prototype = {
 
@@ -52,9 +75,8 @@ TaskSchedulerController.prototype = {
 		
 		// save the task
 		task.save(function(err) {
-			if (err)
-				throw err;						
-			return done(null, task);
+								
+			return done(err, task);
 		});
 	},
 	
@@ -63,9 +85,14 @@ TaskSchedulerController.prototype = {
 		
 		Task.find({
 			isDeleted : false,
-			date : { $gt : moment() }
+			$or : [{
+				hasRepeat: false,
+				date : { $gt : moment() }
+			},{
+				hasRepeat: true				
+			}]
 		})
-		.sort({date: 1})
+		.sort({time: 1})
 		.exec(function (err, tasks) {
 			
 			if (err)
@@ -79,7 +106,7 @@ TaskSchedulerController.prototype = {
 					description: getTaskDescription(config, task.command),
 					img: getTaskImage(config, task.command),
 					time: task.time,
-					weekDays: getWeekDays(config, task.hasRepeat, task.repeat)
+					weekDays: getWeekDays(config, task)
 				});
 			});
 			
@@ -88,12 +115,26 @@ TaskSchedulerController.prototype = {
 		
 	},
 	
+	deleteTask: function(id, done) {
+		Task.findOne({ _id: id }, function (err, task){
+			if (err)
+				done(err);
+
+			task.isDeleted = true;		  
+			
+			task.save(function (err, task){			
+				done(err);
+			});
+		});
+	},
+	
 	doCommandJob: function (done) {
 		var config = this.config;
+		var arduinoserialport = this.arduinoserialport;
 		
 		var now = moment().set({ second: 0, millisecond: 0 });
 						
-		var time = now.format('HH:mm');
+		var time = now.utc().format('HH:mm');
 		
 		var week = removeDiacritics(now.locale(config.locale).format('ddd').toLowerCase());
 		
@@ -126,13 +167,28 @@ TaskSchedulerController.prototype = {
 				console.log('Do task:');
 				console.log(task);
 				
-			});
-			
-			done(false);
+				var command = task.command;
+				
+				if (config.commands.curtain.open.name == command) {
+					arduinoserialport.setCurtainStatus(config.commands.curtain.open.name, function () {
+						done(false);
+					});
+					
+				} else if (config.commands.curtain.close.name == command) {
+					arduinoserialport.setCurtainStatus(config.commands.curtain.close.name, function () {
+						done(false);
+					});
+				} else if (config.commands.alarm.name == command) {
+					arduinoserialport.buzz(function () {
+						done(false);
+					});
+				}
+				
+			});					
 		});		
 	}
 }
 
-module.exports = function(config) {
-	return new TaskSchedulerController(config);
+module.exports = function(config, arduinoserialport) {
+	return new TaskSchedulerController(config, arduinoserialport);
 }

@@ -3,8 +3,8 @@
 	{{#tasks}}		
 		<div class="scheduled-card w3-card-2 span4 {{#isEnabled}} active{{/isEnabled}}" onTablet="span6" onDesktop="span4">
 			<div class="box-content">
-				<input type="hidden" value="{{_id}}"/>
-				<input type="hidden" value="{{command}}"/>
+				<input type="hidden" id="_id" value="{{_id}}"/>
+				<input type="hidden" id="command" value="{{command}}"/>
 				<table class="scheduled-card-table">
 					<tr>
 						<td class="scheduled-card-image-tr">
@@ -20,7 +20,7 @@
 							{{weekDays}} - <b>{{time}}</b>
 						</td>
 						<td>	
-							<button type="button" class="close" data-dismiss="modal">×</button>			
+							<button type="button" class="close btn-schedule-delete" data-dismiss="modal">×</button>			
 						</td>
 					</tr>
 				</table>						

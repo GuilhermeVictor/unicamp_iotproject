@@ -1,6 +1,32 @@
 
 function initCommandControls() {
 	
+	$('.btn-schedule-delete').click(function () {
+		var $card = $(this).closest('.scheduled-card');
+		
+		var _id = $card.find('#_id').val();
+				
+		$.ajax({
+			type: 'POST',
+			url: '/deleteTask',
+			async: false,
+			dataType: 'json',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				_id: _id
+			}),
+			error: function(err) {
+				console.log(err);
+				//TODO alert
+			},
+			success: function (data) {
+				console.log('ok');
+			}
+		});
+		
+		$card.hide('fade');
+	});
+	
 	$('.btn-do-command').click(function () {
 		var command = $(this).attr('data-command');
 		

@@ -91,6 +91,7 @@ ArduinoSerialPortController.prototype = {
 	
 	//toca o buzzer
 	buzz: function (done) {
+		var config = this.config;
 		
 		write(config.arduino.doBuzz, this.sp);
 		

@@ -1,9 +1,7 @@
 // app/routes.js
 
-module.exports = function(config, app, passport, render) {
-	var sidenavprovider = require('./utility/sidenavprovider')(passport);	
-	var arduinoserialport = require('./controllers/arduinoserialport')(config);
-	var taskScheduler = require('./controllers/taskscheduler')(config);
+module.exports = function(config, app, passport, render, arduinoserialport, taskScheduler) {
+	var sidenavprovider = require('./utility/sidenavprovider')(passport);		
 	
 	//index
 	app.get('/', isLoggedIn, function (req, res) {		
@@ -76,9 +74,22 @@ module.exports = function(config, app, passport, render) {
 	
 	app.post('/schedulecommand', isLoggedIn, function (req, res) {	
 				
-		taskScheduler.addTask(req.body, function (task) {
+		taskScheduler.addTask(req.body, function (err, task) {			
+			if (err)
+				throw err;
 			
 			postResult(res, 200, task);			
+		});			
+		
+	});
+	
+	app.post('/deleteTask', isLoggedIn, function (req, res) {	
+				
+		taskScheduler.deleteTask(req.body._id, function (err) {
+			if (err)
+				throw err;
+			
+			postResult(res, 200, null);			
 		});			
 		
 	});
