@@ -19,8 +19,8 @@ void loop(){
 
 	SerialListener();
 	//cortina_open();
-	cortina.step(-7500);
+	cortina.step(-7100);
 	delay(3000);
-	cortina.step(7500);
+	cortina.step(7100);
 
 }

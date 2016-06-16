@@ -10,9 +10,11 @@ int Step_Counter = 0;
 
 int cortina_open(){
 
-	//switch(ST_Cortina):
-		//case 0:
-		//	if(Step_Counter)
+	switch(ST_Cortina):
+		case 0:
+			if(Step_Counter < 7500){
+				
+			}
 
  //Gira o motor no sentido horario a 90 graus
  for (int i = 0; i<=3; i++)
