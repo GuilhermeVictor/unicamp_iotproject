@@ -37,6 +37,12 @@ config.commands.alarm = {
 	img: '/img/clock_32.png'	
 };
 
+//config.commands.coffe = {
+//	name: 'make_coffe',
+//	decription: 'Ligar cafeteira',
+//	img: '/img/coffe.png'
+//};
+
 /* Arduino settings */
 config.arduino = {};
 
@@ -50,5 +56,6 @@ config.arduino.courtSportVolleyball = '5';
 config.arduino.curtainOpen = '6';
 config.arduino.curtainClose = '7';
 config.arduino.doBuzz = '8';
+//config.arduino.makeCoffe = '9';
 	
 module.exports = config;
