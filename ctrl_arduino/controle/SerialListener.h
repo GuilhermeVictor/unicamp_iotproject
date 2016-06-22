@@ -32,15 +32,32 @@ void SerialListener(){
 
 			// CORTINA:
 			case 6:
+				ST_Cortina_Open = 0;
+				EEPROM.put(0, Step_Counter);
 				ST_Cortina_Close = 1;
 				break;
 			case 7:
+				ST_Cortina_Close = 0;
+				EEPROM.put(0, Step_Counter);
 				ST_Cortina_Open = 1;
 				break;
 
 			// DESPERTADOR:
 			case 8:
 				ST_Alarme_System = 1;
+				break;
+
+
+			// CORTINA MANUAL
+			case 100:
+				ST_Cortina_Up = 1;
+				break;
+			case 101:
+				ST_Cortina_Down = 1;
+				break;
+			case 102:
+				ST_Cortina_Up = 0;
+				ST_Cortina_Down = 0;
 				break;
 
 			default:
