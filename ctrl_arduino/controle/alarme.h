@@ -2,15 +2,16 @@
 
 int PIN_Buzzer = 2;
 int PIN_Snooze = 3;
+int ST_Alarme_System = 0;
 
-void setup(){
+void alarme_setup(){
 	pinMode(PIN_Buzzer, OUTPUT);
 	pinMode(PIN_Snooze, INPUT_PULLUP);
 }
 
 unsigned long T_Old_millis = 0;
 int ST_Alarme = 0;
-void loop(){
+void alarme(){
 	switch(ST_Alarme){
 		case 0:
 			//Liga alarme
@@ -38,7 +39,8 @@ void loop(){
 			//Snooze
 			digitalWrite(PIN_Buzzer, LOW);
 			T_Old_millis = millis();
-			ST_Alarme = 3;
+			ST_Alarme = 0;
+			ST_Alarme_System = 0;
 			break;
 		case 3:
 			if(millis() - T_Old_millis >= 5000){

@@ -32,15 +32,15 @@ void SerialListener(){
 
 			// CORTINA:
 			case 6:
-				//abre cortina
+				ST_Cortina_Close = 1;
 				break;
 			case 7:
-				//fecha cortina
+				ST_Cortina_Open = 1;
 				break;
 
 			// DESPERTADOR:
 			case 8:
-				//desperta
+				ST_Alarme_System = 1;
 				break;
 
 			default:
