@@ -1,4 +1,3 @@
-
 function SportCard($el) {
 	this.$el = $el;
 	
@@ -115,6 +114,20 @@ function SportCard($el) {
 			}
 		});
 	});	
+
+	this.$el.find('.facebook-post').click(function(){
+		
+		var $interval = $('#post-facebook-dialog');
+			
+			$interval.modal('show');
+			$('#fbpost').show();
+			
+
+
+
+	});
+
+	
 }
 
 SportCard.prototype = {
@@ -215,3 +228,4 @@ SportCard.prototype = {
 	}
 	
 };
+

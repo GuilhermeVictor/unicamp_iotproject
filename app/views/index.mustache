@@ -30,7 +30,7 @@
 			</div>			
 			<div >
 				<button class="turnonoff-court btn btn-success" data-status="off">Ligar quadra</button>
-				<button class="sport-add-result btn btn-disabled"><span class="icon-plus"></span> Resultado</button>
+				<button class="facebook-post btn btn-primary" data-modal-target-ide="post-facebook-dialog"><span class="icon-plus"></span> Resultado</button>
 			</div>
 		</div>
 	</div>
@@ -186,3 +186,23 @@
 		</div>
 	</div>
 </div>
+
+
+<div class="modal hide fade" id="post-facebook-dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+			<h3>Compartilhar partida com os amigos</h3>
+		</div>
+		<div class="modal-body">
+			<div class="box-content">
+			 	<form id="fbpost" action="./post" method="post" style="display:none;">
+			 		<p>Message: <textarea name="message" style="width:250px;height:150px; placeholder="Enter message" id="message" "></textarea></p>
+  					<input type="submit" name="submit" value="Submit" />
+				</form>
+			  	</div>
+			</div>	
+		</div>
+	</div>
+</div>
+
