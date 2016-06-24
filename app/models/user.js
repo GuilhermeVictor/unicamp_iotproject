@@ -13,7 +13,7 @@ var userSchema = mongoose.Schema({
     facebook         : {
         id           : String,
         token        : String,
-        email        : String,
+    //    email        : String,
         name         : String
     },
     twitter          : {
@@ -44,6 +44,10 @@ userSchema.methods.validPassword = function(password) {
 
 userSchema.methods.getName = function() {
 	return this.google.name;
+};
+
+userSchema.methods.getToken = function () {
+    return this.facebook.token;
 }
 
 // create the model for users and expose it to our app

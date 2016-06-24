@@ -1,5 +1,8 @@
 // app/routes.js
 
+var api = require('./config/facebook');
+//	, auth = require('./config/passport');
+
 module.exports = function(config, app, passport, render, arduinoserialport, taskScheduler) {
 	var sidenavprovider = require('./utility/sidenavprovider')(passport);		
 	
@@ -28,18 +31,28 @@ module.exports = function(config, app, passport, render, arduinoserialport, task
 			});			
 		}
 	});
-	
-	app.post('/post', function(req, res) {
-	  // Check to ensure user has a valid access_token
-	  if (oauth.access_token) {
 
-	    // Call function that contains API call to post on Facebook (see facebook.js)
-	    api.postMessage(oauth.access_token, req.body.message, res);
+	app.post('/post', function(req, res) {
+		passport.deserializeUser(req.session.passport.user, function (err, user) {
+			var model = {};
+			
+			model.token = user.getToken();
+			
+			if (model.token) {
+
+	    	// Call function that contains API call to post on Facebook (see facebook.js)
+	   		 	api.postMessage(model.token, req.body.message, res);
+	   		 	//res.redirect('/');
 	    
-	  } else {
-	    console.log("Couldn't confirm that user was authenticated. Redirecting to /");
-	    res.redirect('/');
-	  }
+	  		} else {
+	    		console.log("Couldn't confirm that user was authenticated. Redirecting to /");
+	    		res.redirect('/');
+	 		 }		
+			
+		});		
+
+	  // Check to ensure user has a valid access_token
+	  
 	});
 
 	//change sport call
@@ -178,7 +191,7 @@ module.exports = function(config, app, passport, render, arduinoserialport, task
     // FACEBOOK ROUTES =====================
     // =====================================
     // route for facebook authentication and login
-    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'publish_actions' }));
 
     // handle the callback after facebook has authenticated the user
     app.get('/auth/facebook/callback',

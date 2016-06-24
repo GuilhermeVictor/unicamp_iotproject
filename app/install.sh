@@ -18,3 +18,4 @@ npm install node-schedule@1.1.0
 npm install moment@2.13.0
 npm install diacritics@1.2.3
 npm install passport-facebook
+npm install request

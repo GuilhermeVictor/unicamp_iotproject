@@ -121,7 +121,11 @@ function SportCard($el) {
 			
 			$interval.modal('show');
 			$('#fbpost').show();
-			
+			$('h2').hide();
+			$('#fbpost').submit(function() {
+    			$('#post-facebook-dialog').modal('hide');
+
+			});
 
 
 

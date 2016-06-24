@@ -34,6 +34,17 @@
 			</div>
 		</div>
 	</div>
+
+
+
+	<div class="ligth-card w3-card-2 span4" onTablet="span6" onDesktop="span4">
+		<div class="row-fluid">
+			<a class="quick-button metro yellow btn-ligth-sheme" data-modal-target-id="set_light_scheme" data-command="turnLight">
+				<img alt="" src="/img/light.png"></img>
+				<p>Esquema de Luzes</p>
+			</a>
+		</div>		
+	</div>
 	
 	<!-- TODO mostrar proximo alarme -->
 	
@@ -56,6 +67,8 @@
 		</div>		
 	</div>
 	
+
+
 	<div class="span3 w3-card-2" onTablet="span2" onDesktop="span3">
 		<div class="row-fluid">
 			<a class="quick-button metro green btn-do-command" data-command="curtain_open">
@@ -99,6 +112,7 @@
 		</div>
 	
 	</div>
+
 
 </div>
 
@@ -196,10 +210,10 @@
 		</div>
 		<div class="modal-body">
 			<div class="box-content">
-					<form id="fbpost" action="./post" method="post" style="display:none;">
-					  <p>Message: <input type="text" placeholder="Enter message" id="message" name="message" /></p>
-					  <input type="submit" name="submit" value="Submit" />
-					</form>
+				<form id="fbpost" action="./post" method="post" style="display:none;"> 
+           			<p>Message: <textarea name="message" style="width:250px;height:150px; placeholder="Enter message" id="message" "></textarea></p> 
+            		<input type="submit" name="submit" value="Submit" /> 
+        			</form> 
 			  	</div>
 			</div>	
 		</div>
