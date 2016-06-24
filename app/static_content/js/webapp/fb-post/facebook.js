@@ -1,6 +1,6 @@
 var request = require('request');
 
-module.exports = function postMessage(access_token, message, response) {
+function postMessage(access_token, message, response) {
     // Specify the URL and query string parameters needed for the request
     var url = 'https://graph.facebook.com/me/feed';
     var params = {
@@ -8,7 +8,7 @@ module.exports = function postMessage(access_token, message, response) {
         message: message
     };
 
-	// Send the request
+  // Send the request
     request.post({url: url, qs: params}, function(err, resp, body) {
       
       // Handle any errors that occur
@@ -26,3 +26,5 @@ module.exports = function postMessage(access_token, message, response) {
     });
 
 }
+
+exports.postMessage = postMessage;

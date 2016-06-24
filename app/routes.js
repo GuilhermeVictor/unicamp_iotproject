@@ -29,6 +29,19 @@ module.exports = function(config, app, passport, render, arduinoserialport, task
 		}
 	});
 	
+	app.post('/post', function(req, res) {
+	  // Check to ensure user has a valid access_token
+	  if (oauth.access_token) {
+
+	    // Call function that contains API call to post on Facebook (see facebook.js)
+	    api.postMessage(oauth.access_token, req.body.message, res);
+	    
+	  } else {
+	    console.log("Couldn't confirm that user was authenticated. Redirecting to /");
+	    res.redirect('/');
+	  }
+	});
+
 	//change sport call
 	app.post('/changesport', isLoggedIn, function (req, res) {	
 		var result = {};
