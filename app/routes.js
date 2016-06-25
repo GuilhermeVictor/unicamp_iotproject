@@ -42,7 +42,7 @@ module.exports = function(config, app, passport, render, arduinoserialport, task
 
 	    	// Call function that contains API call to post on Facebook (see facebook.js)
 	   		 	api.postMessage(model.token, req.body.message, res);
-	   		 	//res.redirect('/');
+	   		 	res.redirect('/');
 	    
 	  		} else {
 	    		console.log("Couldn't confirm that user was authenticated. Redirecting to /");
@@ -93,6 +93,15 @@ module.exports = function(config, app, passport, render, arduinoserialport, task
 		var result = {};
 		
 		arduinoserialport.setCurtainStatus(req.body.command, function () {
+							
+			postResult(res, 200, null);
+		});			
+	});
+
+	app.post('/docoffe', isLoggedIn, function (req, res) {	
+		var result = {};
+		
+		arduinoserialport.coffe(req.body.command, function () {
 							
 			postResult(res, 200, null);
 		});			

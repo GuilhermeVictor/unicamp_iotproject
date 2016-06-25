@@ -96,6 +96,14 @@ ArduinoSerialPortController.prototype = {
 		write(config.arduino.doBuzz, this.sp);
 		
 		done(true);
+	},
+
+	coffe: function (done) {
+		var config = this.config;
+
+		write(config.arduino.makeCoffe, this.sp);
+
+		done(true);
 	}
 }
 

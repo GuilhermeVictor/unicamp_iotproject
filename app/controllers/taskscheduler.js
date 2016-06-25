@@ -13,6 +13,10 @@ function getTaskDescription(config, command) {
 	else if (config.commands.alarm.name == command)
 		return config.commands.alarm.description;
 	
+	else if (config.commands.coffe.name == command)
+		return config.commands.coffe.description;
+	
+
 	throw 'Invalid command "' + command + '" at getTaskDescription';
 }
 
@@ -25,6 +29,9 @@ function getTaskImage(config, command) {
 	
 	else if (config.commands.alarm.name == command)
 		return config.commands.alarm.img;
+	
+	else if (config.commands.coffe.name == command)
+		return config.commands.coffe.img;
 	
 	throw 'Invalid command "' + command + '" at getTaskImage';
 }
@@ -180,6 +187,10 @@ TaskSchedulerController.prototype = {
 					});
 				} else if (config.commands.alarm.name == command) {
 					arduinoserialport.buzz(function () {
+						done(false);
+					});
+				} else if (config.commands.coffe.name == command) {
+					arduinoserialport.makeCoffe(function () {
 						done(false);
 					});
 				}

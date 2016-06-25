@@ -111,27 +111,34 @@ function SportCard($el) {
 				console.log(data);
 				card.setCourtStatus(data.courtStatus);
 				card.updateLight();
+				card.fbgray();
 			}
 		});
 	});	
 
 	this.$el.find('.facebook-post').click(function(){
 		
-		var $interval = $('#post-facebook-dialog');
+		var status = card.$el.find('.turnonoff-court').attr('data-status');
+		
+
+		if(status == card.courtStatus.on.name){
 			
-			$interval.modal('show');
-			$('#fbpost').show();
-			$('h2').hide();
-			$('#fbpost').submit(function() {
-    			$('#post-facebook-dialog').modal('hide');
+			
+			var $interval = $('#post-facebook-dialog');
+			
+				$interval.modal('show');
+				$('#fbpost').show();
+				$('h2').hide();
+				$('#fbpost').submit(function() {
+    				$('#post-facebook-dialog').modal('hide');
 
-			});
+				});
 
-
+		}	
 
 	});
 
-	
+		
 }
 
 SportCard.prototype = {
@@ -173,19 +180,21 @@ SportCard.prototype = {
 	updateLight: function () {
 		var $a = this.$el.find('.btn-change-sport');
 		var $btn = this.$el.find('.turnonoff-court');
-		
+			
 		var sport = $a.attr('data-sport');
 		var status = $btn.attr('data-status');
 		
 		this.removeClasses($a, $btn);
-		
+
 		if (status == this.courtStatus.on.name) {
 			$btn.text(this.courtStatus.on.btn_display);
-			
+
+		
+
 			if (sport == this.sports.tennis.name) {
 				$a.addClass(this.sports.tennis.a_class);
 				$btn.addClass(this.sports.tennis.btn_class);
-				
+					
 			} else if (sport == this.sports.bascketball.name) {
 				$a.addClass(this.sports.bascketball.a_class);
 				$btn.addClass(this.sports.bascketball.btn_class);
@@ -204,7 +213,23 @@ SportCard.prototype = {
 			$a.addClass(this.courtStatus.off.a_class);
 		}		
 	},
+
+	fbgray: function(){
+		var $graybutton = this.$el.find('.facebook-post');
+		var $btn = this.$el.find('.turnonoff-court');
+			
+		var status = $btn.attr('data-status');
+
+		if(status == this.courtStatus.on.name){
+			$graybutton.removeClass("gray");
+		}
+		else{
+			$graybutton.addClass("gray");
+
+		}
+	},
 	
+
 	setSport: function (sport) {
 		this.$el.find('.btn-change-sport').attr('data-sport', sport);
 	},
@@ -230,6 +255,7 @@ SportCard.prototype = {
 			this.sports.volleyball.btn_class
 		);
 	}
+
 	
 };
 

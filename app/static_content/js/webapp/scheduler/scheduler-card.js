@@ -50,6 +50,30 @@ function initCommandControls() {
 		});
 	});
 	
+	$('.btn-do-coffe').click(function () {
+		var command = $(this).attr('data-command');
+		
+		var data = {};
+		data.command = command;			
+		
+		$.ajax({
+			type: 'POST',
+			url: '/docoffe',
+			async: false,
+			dataType: 'json',
+			contentType: 'application/json',
+			data: JSON.stringify(data),
+			error: function(err) {
+				console.log(err);
+				//TODO alert
+			},
+			success: function (data) {
+				console.log('ok');
+			}
+		});
+	});
+
+
 	$('.btn-schedule-command').click(function () {
 		var command = $(this).attr('data-command');
 		
