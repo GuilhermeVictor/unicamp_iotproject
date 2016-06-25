@@ -190,7 +190,7 @@ TaskSchedulerController.prototype = {
 						done(false);
 					});
 				} else if (config.commands.coffe.name == command) {
-					arduinoserialport.makeCoffe(function () {
+					arduinoserialport.coffe(function () {
 						done(false);
 					});
 				}
