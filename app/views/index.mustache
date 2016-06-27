@@ -210,11 +210,18 @@
 		</div>
 		<div class="modal-body">
 			<div class="box-content">
-				<form id="fbpost" action="./post" method="post" style="display:none;"> 
-           			<p>Message: <textarea name="message" style="width:250px;height:150px; placeholder="Enter message" id="message" "></textarea></p> 
-            		<input type="submit" name="submit" value="Submit" /> 
-        			</form> 
-			  	</div>
+				<form>
+					<fieldset>				
+						<div class="control-group">
+							<textarea maxlength="500" id="postMessage" class="facebook-post-textarea"></textarea>
+							<span class="help-inline hidden">Escreva alguma coisa antes de postar...</span>
+						</div>				
+						<div class="form-actions">							
+							<button class="btn btn-primary" id="btnPost"><span class="icon-plus"></span> Postar comentário</button>
+							<button class="btn" id="btnPost" data-dismiss="modal">Cancelar</button>
+						</div>
+					</fieldset>
+				</form>				
 			</div>	
 		</div>
 	</div>

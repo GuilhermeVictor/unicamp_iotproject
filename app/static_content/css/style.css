@@ -3093,3 +3093,11 @@ ul.messagesList li span.date {
 	padding: 4px 6px !important;
 	min-width: 14px;
 }
+
+.facebook-post-textarea {
+	width: 100%;
+	height: 150px;
+	resize: none;	
+	padding: 0;
+    border: 1px solid #ccc;
+}

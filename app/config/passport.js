@@ -218,7 +218,7 @@ module.exports = function(passport) {
                 }
 				
 				// add new user or update
-				newUser.save(function(err) {
+				user.save(function(err) {
 					if (err)
 						throw err;						
 					return done(null, user);
