@@ -17,5 +17,5 @@ npm install serialport@3.1.2-beta1
 npm install node-schedule@1.1.0
 npm install moment@2.13.0
 npm install diacritics@1.2.3
-npm install passport-facebook
-npm install request
+npm install request@2.72.0
+npm install passport-facebook@2.1.1

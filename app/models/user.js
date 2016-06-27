@@ -43,7 +43,12 @@ userSchema.methods.validPassword = function(password) {
 };
 
 userSchema.methods.getName = function() {
-	return this.google.name;
+	if (this.google.name != null)
+		return this.google.name;
+	else if (this.facebook.name != null)
+		return this.facebook.name;
+	
+	return '';
 };
 
 userSchema.methods.getToken = function () {

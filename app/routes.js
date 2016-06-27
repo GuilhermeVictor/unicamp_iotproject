@@ -1,7 +1,6 @@
 // app/routes.js
 
 var api = require('./config/facebook');
-//	, auth = require('./config/passport');
 
 module.exports = function(config, app, passport, render, arduinoserialport, taskScheduler) {
 	var sidenavprovider = require('./utility/sidenavprovider')(passport);		
@@ -101,7 +100,7 @@ module.exports = function(config, app, passport, render, arduinoserialport, task
 	app.post('/docoffe', isLoggedIn, function (req, res) {	
 		var result = {};
 		
-		arduinoserialport.coffe(req.body.command, function () {
+		arduinoserialport.coffe(function () {
 							
 			postResult(res, 200, null);
 		});			

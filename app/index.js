@@ -80,7 +80,7 @@ app.listen(config.port, function () {
   console.log('Example app listening on port ' + config.port + '!');
 });
 	
-//running a task every two minutes
+//running a task every minutes
 schedule.scheduleJob({ second : 0 }, function() {
 	
 	taskScheduler.doCommandJob(function (err) {

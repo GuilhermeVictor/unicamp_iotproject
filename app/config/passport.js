@@ -134,7 +134,7 @@ module.exports = function(passport) {
 
     // facebook will send back the token and profile
     function(token, refreshToken, profile, done) {
-
+	
         // asynchronous
         process.nextTick(function() {
 
@@ -148,7 +148,8 @@ module.exports = function(passport) {
 
                 // if the user is found, then log them in
                 if (user) {
-                    return done(null, user); // user found, return that user
+					user.facebook.name  = profile.displayName;
+					
                 } else {
                     // if there is no user found with that facebook id, create them
                     var newUser            = new User();
@@ -156,18 +157,20 @@ module.exports = function(passport) {
                     // set all of the facebook information in our user model
                     newUser.facebook.id    = profile.id; // set the users facebook id                   
                     newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
-                    newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
+                    newUser.facebook.name  = profile.displayName; // look at the passport user profile to see how names are returned
                     //newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
 
-                    // save our user to the database
-                    newUser.save(function(err) {
-                        if (err)
-                            throw err;
-
-                        // if successful, return the new user
-                        return done(null, newUser);
-                    });
+                    user = newUser;
                 }
+				
+				// add new user or update
+				user.save(function(err) {
+					if (err)
+						throw err;
+
+					// if successful, return the new user
+					return done(null, user);
+				});
 
             });
         });
@@ -196,9 +199,10 @@ module.exports = function(passport) {
             User.findOne({ 'google.id' : profile.id }, function(err, user) {			
                 if (err)
                     return done(err);
-                if (user) {
-                    // if a user is found, log them in
-                    return done(null, user);
+				
+                if (user) {					
+					user.google.name  = profile.displayName;
+                    
                 } else {							
 				
                     // if the user isnt in our database, create a new user
@@ -210,14 +214,15 @@ module.exports = function(passport) {
                     newUser.google.name  = profile.displayName;
                     newUser.google.email = profile.emails[0].value; // pull the first email
 
-
-                    // save the user					
-                    newUser.save(function(err) {
-                        if (err)
-                            throw err;						
-                        return done(null, newUser);
-                    });
+                    user = newUser;
                 }
+				
+				// add new user or update
+				newUser.save(function(err) {
+					if (err)
+						throw err;						
+					return done(null, user);
+				});
             });
         });
 

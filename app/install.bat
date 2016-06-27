@@ -16,4 +16,5 @@ start cmd.exe /c npm install serialport@3.1.2-beta1
 start cmd.exe /c npm install node-schedule@1.1.0
 start cmd.exe /c npm install moment@2.13.0
 start cmd.exe /c npm install diacritics@1.2.3
-start cmd.exe /c npm install passport-facebook
+start cmd.exe /c npm install request@2.72.0
+start cmd.exe /c npm install passport-facebook@2.1.1
