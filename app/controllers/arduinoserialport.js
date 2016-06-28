@@ -21,24 +21,60 @@ function write(data, sp) {
 	
 function ArduinoSerialPortController(config) {
 
-	var serialport = require('serialport');
+	var controller = this;
+
+	var serialport = require('serialport');	
+	
+	var foundArduino = false;
+	
+	// tenta encontrar a porta do arduino:
+	serialport.list(function (err, ports) {
 		
-	var sp = new serialport.SerialPort(config.arduino.portName, {
-		baudRate: 9600,
-		dataBits: 8,
-		parity: 'none',
-		stopBits: 1,
-		flowControl: false,
-		parser: serialport.parsers.readline("\n")
+		for (var i = 0; i < ports.length; i++) {
+			var port = ports[i];
+			
+			console.log('Tentando abrir { comName: ' + port.comName + ', manufacturer: ' + port.manufacturer + ' }');			
+
+			/* example port information 
+			{
+				comName: '/dev/cu.usbmodem1421',
+				manufacturer: 'Arduino (www.arduino.cc)',
+				serialNumber: '757533138333964011C1',
+				pnpId: undefined,
+				locationId: '0x14200000',
+				vendorId: '0x2341',
+				productId: '0x0043'
+			} */
+			
+			if ((port.manufacturer + '').toLowerCase().indexOf('arduino') > 0) {
+				config.arduino.portName = port.comName;
+				foundArduino = true;
+			}
+		};
+		
+		if (foundArduino) {
+			
+		} else {
+			console.log('Arduino não encontrado. Tentando na porta default: ' + config.arduino.portName);
+		}		
+	
+		var sp = new serialport.SerialPort(config.arduino.portName, {
+			baudRate: 9600,
+			dataBits: 8,
+			parity: 'none',
+			stopBits: 1,
+			flowControl: false,
+			parser: serialport.parsers.readline("\n")
+		});
+		
+		sp.on('open', showPortOpen);
+		sp.on('data', sendSerialData);
+		sp.on('close', showPortClose);
+		sp.on('error', showError);
+		
+		controller.sp = sp;
+		controller.config = config;
 	});
-	
-	sp.on('open', showPortOpen);
-	sp.on('data', sendSerialData);
-	sp.on('close', showPortClose);
-	sp.on('error', showError);
-	
-	this.sp = sp;
-	this.config = config;
 }
 
 ArduinoSerialPortController.prototype = {
