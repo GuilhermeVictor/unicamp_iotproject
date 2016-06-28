@@ -2,228 +2,294 @@
 	#content > .row-fluid {
 		margin-bottom: 20px
 	}
+	
+	@media (min-width: 768px) {
+		.container {
+			width: 80%;
+			margin-left: 0;
+		}
+	}
 </style>
 
 
-<div class="row-fluid">
-	<h2>
-		Para agora
-	</h2>
-</div>
-<div class="row-fluid">
-	
-	<div class="sport-card w3-card-2 span4" onTablet="span6" onDesktop="span4">
-		<div class="row-fluid">
-			<a class="quick-button metro green btn-change-sport" data-sport="soccer">
-				<img alt="" src="img/soccer_128.png"></img>
-				<p id="game-name">Futebol</p>				
-			</a>
-		</div>
-		<div class="box-content">
-			<div>
-				<p>
-					Você agendou o uso da quadra para agora.
-				</p>
-				<p>
-					Você pode usar a quadra até 18h.
-				</p>
-			</div>			
-			<div >
-				<button class="turnonoff-court btn btn-success" data-status="off">Ligar quadra</button>
-				<button class="facebook-post gray btn btn-primary" data-modal-target-id="post-facebook-dialog"><span class="icon-plus"></span> Resultado</button>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div class="ligth-card w3-card-2 span4" onTablet="span6" onDesktop="span4">
-		<div class="row-fluid">
-			<a class="quick-button metro yellow btn-ligth-scheme" data-modal-target-id="set-light-scheme" data-status="off">
-				<img alt="" src="/img/light.png"></img>
-				<p>Esquema de Luzes</p>
-			</a>
-		</div>		
-	</div>
-	
-	<!-- TODO mostrar proximo alarme -->
-	
-</div>
-
-<div class="row-fluid">
+<div class="">
+	<div class="row-fluid">
 		<h2>
-			Comandos rápidos
+			Para agora
 		</h2>
 	</div>
-<div class="row-fluid">	
-	
-	
-	<div class="span3 w3-card-2" onTablet="span2" onDesktop="span3">
-		<div class="row-fluid">
-			<a class="quick-button metro purple btn-schedule-command" data-modal-target-id="schedule-command-dialog" data-command="alarm">
-				<img alt="" src="/img/clock_128.png"></img>
-				<p>Novo alarme</p>
-			</a>
-		</div>		
-	</div>
-	
-
-
-	<div class="span3 w3-card-2" onTablet="span2" onDesktop="span3">
-		<div class="row-fluid">
-			<a class="quick-button metro green btn-do-command" data-command="curtain_open">
-				<img alt="" src="/img/curtains_bathroom-128.png"></img>
-				<p>Abrir cortinas</p>
-			</a>
-		</div>
-		<div class="box-content">				
-			<div >				
-				<button class="sport-add-result btn btn-success btn-schedule-command" data-command="curtain_open" data-modal-target-id="schedule-command-dialog"><span class="icon-time"></span> Agendar</button>
+	<div class="row-fluid">
+		
+		<div class="sport-card w3-card-2 span4" onTablet="span6" onDesktop="span4">
+			<div class="row-fluid">
+				<a class="quick-button metro green btn-change-sport" data-sport="soccer">
+					<img alt="" src="img/soccer_128.png"></img>
+					<p id="game-name">Futebol</p>				
+				</a>
 			</div>
-		</div>
-	</div>
-	
-	<div class="span3 w3-card-2" onTablet="span2" onDesktop="span3">
-		<div class="row-fluid">
-			<a class="quick-button metro green btn-do-command" data-command="curtain_close">
-				<img alt="" src="/img/curtains_bathroom-close-128.png"></img>
-				<p>Fechar cortinas</p>
-			</a>
-		</div>
-		<div class="box-content">				
-			<div >				
-				<button class="sport-add-result btn-success btn btn-schedule-command" data-command="curtain_close" data-modal-target-id="schedule-command-dialog"><span class="icon-time"></span> Agendar</button>
-			</div>
-		</div>
-	
-	</div>
-
-	<div class="span3 w3-card-2" onTablet="span2" onDesktop="span3">
-		<div class="row-fluid">
-			<a class="quick-button metro light red btn-do-coffe" data-command="make_coffe">
-				<img alt="" src="/img/coffe.png"></img>
-				<p>Ligar cafeteira</p>
-			</a>
-		</div>
-		<div class="box-content">				
-			<div >				
-				<button class="sport-add-result btn-danger btn btn-schedule-command" data-command="make_coffe" data-modal-target-id="schedule-command-dialog"><span class="icon-time"></span> Agendar</button>
-			</div>
-		</div>
-	
-	</div>
-
-
-</div>
-
-<div class="modal hide fade" id="change-sport-dialog">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>O que você quer jogar?</h3>
-		</div>
-		<div class="modal-body">
 			<div class="box-content">
-			  <div class="span3" onTablet="span2" onDesktop="span3">
-				<a class="quick-button metro orange btn-change-sport w3-card-2" data-dismiss="modal" data-sport="bascketball">
-					<img alt="" src="/img/bascketball_128.png"></img>
-					<p>Basquete</p>
+				<div>
+					<p>
+						Você agendou o uso da quadra para agora.
+					</p>
+					<p>
+						Você pode usar a quadra até 18h.
+					</p>
+				</div>			
+				<div >
+					<button class="turnonoff-court btn btn-success" data-status="off">Ligar quadra</button>
+					<button class="facebook-post gray btn btn-primary" data-modal-target-id="post-facebook-dialog"><span class="icon-plus"></span> Resultado</button>
+				</div>
+			</div>
+		</div>
+
+		
+		<!-- TODO mostrar proximo alarme -->
+		
+	</div>
+
+	<div class="row-fluid">
+		<h2>
+			Iluminação
+		</h2>
+	</div>
+	<div class="row-fluid">
+	
+		<div class="light-card w3-card-2 span3" onTablet="span6" onDesktop="span3">
+			<div class="row-fluid">
+				<a class="quick-button metro yellow btn-toogle-light" data-command="light1_turn_on">
+					<img alt="" src="img/Dish-128.png"></img>
+					<p>Cozinha</p>				
 				</a>
-			  </div>
-			  <div class="span3" onTablet="span2" onDesktop="span3">
-				<a class="quick-button metro green btn-change-sport w3-card-2" data-dismiss="modal" data-sport="soccer">
-					<img alt="" src="/img/soccer_128.png"></img>
-					<p>Futebol</p>
+			</div>
+			<div class="box-content">
+				<div>				
+					<button class="btn btn-warning" data-command="light1_turn_on">Ligar</button>
+					<button class="btn btn-primary btn-schedule-command hidden" data-command="light1_turn_on" data-modal-target-id="schedule-command-dialog"><span class="icon-time"></span> Agendar</button>
+				</div>
+			</div>
+		</div>	
+		
+		<div class="light-card w3-card-2 span3" onTablet="span6" onDesktop="span3">
+			<div class="row-fluid">
+				<a class="quick-button metro blue btn-toogle-light" data-command="light1_turn_on">
+					<img alt="" src="img/bedroom-128.png"></img>
+					<p>Quarto</p>				
 				</a>
-			  </div>
-			  <div class="span3" onTablet="span2" onDesktop="span3">
-				<a class="quick-button metro red btn-change-sport w3-card-2" data-dismiss="modal" data-sport="tennis">
-					<img alt="" src="/img/tennis_128.png"></img>
-					<p>Tênis</p>
+			</div>
+			<div class="box-content">
+				<div>				
+					<button class="btn btn-primary" data-command="light1_turn_on"><span class="icon-lightbulb "/> Ligar</button>
+					<button class="btn btn-primary btn-schedule-command hidden" data-command="light1_turn_on" data-modal-target-id="schedule-command-dialog"><span class="icon-time"></span> Agendar</button>
+				</div>
+			</div>
+		</div>	
+		
+		<div class="light-card w3-card-2 span3" onTablet="span6" onDesktop="span3">
+			<div class="row-fluid">
+				<a class="quick-button metro red btn-toogle-light" data-command="light1_turn_on">
+					<img alt="" src="img/livingroom-128.png"></img>
+					<p>Sala</p>				
 				</a>
-			  </div>
-			  <div class="span3" onTablet="span2" onDesktop="span3">
-				<a class="quick-button metro blue btn-change-sport w3-card-2" data-dismiss="modal" data-sport="volleyball">
-					<img alt="" src="/img/volleyball_128.png"></img>
-					<p>Vôlei</p>
+			</div>
+			<div class="box-content">
+				<div>				
+					<button class="btn btn-danger" data-command="light1_turn_on">Ligar</button>
+					<button class="btn btn-primary btn-schedule-command hidden" data-command="light1_turn_on" data-modal-target-id="schedule-command-dialog"><span class="icon-time"></span> Agendar</button>
+				</div>
+			</div>
+		</div>	
+		
+		<div class="light-card w3-card-2 span3" onTablet="span6" onDesktop="span3">
+			<div class="row-fluid">
+				<a class="quick-button metro green btn-toogle-light" data-command="light1_turn_on">
+					<img alt="" src="img/outside-128.png"></img>
+					<p>Externo</p>				
 				</a>
-			  </div>
+			</div>
+			<div class="box-content">
+				<div>				
+					<button class="btn btn-success" data-command="light1_turn_on">Ligar</button>
+					<button class="btn btn-primary btn-schedule-command hidden" data-command="light1_turn_on" data-modal-target-id="schedule-command-dialog"><span class="icon-time"></span> Agendar</button>
+				</div>
+			</div>
+		</div>	
+	</div>
+
+	<div class="row-fluid">
+			<h2>
+				Comandos rápidos
+			</h2>
+		</div>
+	<div class="row-fluid">	
+		
+		
+		<div class="span3 w3-card-2" onTablet="span2" onDesktop="span3">
+			<div class="row-fluid">
+				<a class="quick-button metro purple btn-schedule-command" data-modal-target-id="schedule-command-dialog" data-command="alarm">
+					<img alt="" src="/img/clock_128.png"></img>
+					<p>Novo alarme</p>
+				</a>
+			</div>		
+		</div>
+		
+
+
+		<div class="span3 w3-card-2" onTablet="span2" onDesktop="span3">
+			<div class="row-fluid">
+				<a class="quick-button metro green btn-do-command" data-command="curtain_open">
+					<img alt="" src="/img/curtains_bathroom-128.png"></img>
+					<p>Abrir cortinas</p>
+				</a>
+			</div>
+			<div class="box-content">				
+				<div >				
+					<button class="sport-add-result btn btn-success btn-schedule-command" data-command="curtain_open" data-modal-target-id="schedule-command-dialog"><span class="icon-time"></span> Agendar</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="span3 w3-card-2" onTablet="span2" onDesktop="span3">
+			<div class="row-fluid">
+				<a class="quick-button metro green btn-do-command" data-command="curtain_close">
+					<img alt="" src="/img/curtains_bathroom-close-128.png"></img>
+					<p>Fechar cortinas</p>
+				</a>
+			</div>
+			<div class="box-content">				
+				<div >				
+					<button class="sport-add-result btn-success btn btn-schedule-command" data-command="curtain_close" data-modal-target-id="schedule-command-dialog"><span class="icon-time"></span> Agendar</button>
+				</div>
+			</div>
+		
+		</div>
+
+		<div class="span3 w3-card-2" onTablet="span2" onDesktop="span3">
+			<div class="row-fluid">
+				<a class="quick-button metro light red btn-do-coffe" data-command="make_coffe">
+					<img alt="" src="/img/coffe.png"></img>
+					<p>Ligar cafeteira</p>
+				</a>
+			</div>
+			<div class="box-content">				
+				<div >				
+					<button class="sport-add-result btn-danger btn btn-schedule-command" data-command="make_coffe" data-modal-target-id="schedule-command-dialog"><span class="icon-time"></span> Agendar</button>
+				</div>
+			</div>
+		
+		</div>
+
+
+	</div>
+
+	<div class="modal hide fade" id="change-sport-dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>O que você quer jogar?</h3>
+			</div>
+			<div class="modal-body">
+				<div class="box-content">
+				  <div class="span3" onTablet="span2" onDesktop="span3">
+					<a class="quick-button metro orange btn-change-sport w3-card-2" data-dismiss="modal" data-sport="bascketball">
+						<img alt="" src="/img/bascketball_128.png"></img>
+						<p>Basquete</p>
+					</a>
+				  </div>
+				  <div class="span3" onTablet="span2" onDesktop="span3">
+					<a class="quick-button metro green btn-change-sport w3-card-2" data-dismiss="modal" data-sport="soccer">
+						<img alt="" src="/img/soccer_128.png"></img>
+						<p>Futebol</p>
+					</a>
+				  </div>
+				  <div class="span3" onTablet="span2" onDesktop="span3">
+					<a class="quick-button metro red btn-change-sport w3-card-2" data-dismiss="modal" data-sport="tennis">
+						<img alt="" src="/img/tennis_128.png"></img>
+						<p>Tênis</p>
+					</a>
+				  </div>
+				  <div class="span3" onTablet="span2" onDesktop="span3">
+					<a class="quick-button metro blue btn-change-sport w3-card-2" data-dismiss="modal" data-sport="volleyball">
+						<img alt="" src="/img/volleyball_128.png"></img>
+						<p>Vôlei</p>
+					</a>
+				  </div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 
-<div class="modal hide fade" id="schedule-command-dialog">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Agendar comando</h3>
-		</div>
-		<div class="modal-body">
-			<div class="box-content">			
-				<div class="control-group">				
-					<div class="text-center">
-						<div id="datetimepicker" class="datetimepicker"> </div>                
-					</div>				
-				</div>
-				<div class="row-fluid">			
-					<p>Repetir</p>
-					<div class="control-group week-days text-center">
-						<a class="btn schedule-command-btn-day">D
-							<input type="hidden" class="schedule-command-day" data-day="dom" value="false">
-						</a>
-						<a class="btn schedule-command-btn-day">2ª
-							<input type="hidden" class="schedule-command-day" data-day="seg" value="false">
-						</a>
-						<a class="btn schedule-command-btn-day">3ª
-							<input type="hidden" class="schedule-command-day" data-day="ter" value="false">
-						</a>
-						<a class="btn schedule-command-btn-day">4ª
-							<input type="hidden" class="schedule-command-day" data-day="qua" value="false">
-						</a>
-						<a class="btn schedule-command-btn-day">5ª
-							<input type="hidden" class="schedule-command-day" data-day="qui" value="false">
-						</a>
-						<a class="btn schedule-command-btn-day">6ª
-							<input type="hidden" class="schedule-command-day" data-day="sex" value="false">
-						</a>
-						<a class="btn schedule-command-btn-day">S
-							<input type="hidden" class="schedule-command-day" data-day="sab" value="false">
-						</a>
+	<div class="modal hide fade" id="schedule-command-dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Agendar comando</h3>
+			</div>
+			<div class="modal-body">
+				<div class="box-content">			
+					<div class="control-group">				
+						<div class="text-center">
+							<div id="datetimepicker" class="datetimepicker"> </div>                
+						</div>				
+					</div>
+					<div class="row-fluid">			
+						<p>Repetir</p>
+						<div class="control-group week-days text-center">
+							<a class="btn schedule-command-btn-day">D
+								<input type="hidden" class="schedule-command-day" data-day="dom" value="false">
+							</a>
+							<a class="btn schedule-command-btn-day">2ª
+								<input type="hidden" class="schedule-command-day" data-day="seg" value="false">
+							</a>
+							<a class="btn schedule-command-btn-day">3ª
+								<input type="hidden" class="schedule-command-day" data-day="ter" value="false">
+							</a>
+							<a class="btn schedule-command-btn-day">4ª
+								<input type="hidden" class="schedule-command-day" data-day="qua" value="false">
+							</a>
+							<a class="btn schedule-command-btn-day">5ª
+								<input type="hidden" class="schedule-command-day" data-day="qui" value="false">
+							</a>
+							<a class="btn schedule-command-btn-day">6ª
+								<input type="hidden" class="schedule-command-day" data-day="sex" value="false">
+							</a>
+							<a class="btn schedule-command-btn-day">S
+								<input type="hidden" class="schedule-command-day" data-day="sab" value="false">
+							</a>
+						</div>
+					</div>
+					<div >				
+						<button class="btn-schedule-command btn btn-danger" data-dismiss="modal"><span class="icon-time"></span> Agendar</button>
 					</div>
 				</div>
-				<div >				
-					<button class="btn-schedule-command btn btn-danger" data-dismiss="modal"><span class="icon-time"></span> Agendar</button>
-				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal hide fade" id="post-facebook-dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Compartilhar partida com os amigos</h3>
+			</div>
+			<div class="modal-body">
+				<div class="box-content">
+					<form>
+						<fieldset>				
+							<div class="control-group">
+								<textarea maxlength="500" id="postMessage" class="facebook-post-textarea"></textarea>
+								<span class="help-inline hidden">Escreva alguma coisa antes de postar...</span>
+							</div>				
+							<div class="form-actions">							
+								<button class="btn btn-primary" id="btnPost"><span class="icon-plus"></span> Postar comentário</button>
+								<button class="btn" id="btnPost" data-dismiss="modal">Cancelar</button>
+							</div>
+						</fieldset>
+					</form>				
+				</div>	
 			</div>
 		</div>
 	</div>
 </div>
-
-
-<div class="modal hide fade" id="post-facebook-dialog">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">×</button>
-			<h3>Compartilhar partida com os amigos</h3>
-		</div>
-		<div class="modal-body">
-			<div class="box-content">
-				<form>
-					<fieldset>				
-						<div class="control-group">
-							<textarea maxlength="500" id="postMessage" class="facebook-post-textarea"></textarea>
-							<span class="help-inline hidden">Escreva alguma coisa antes de postar...</span>
-						</div>				
-						<div class="form-actions">							
-							<button class="btn btn-primary" id="btnPost"><span class="icon-plus"></span> Postar comentário</button>
-							<button class="btn" id="btnPost" data-dismiss="modal">Cancelar</button>
-						</div>
-					</fieldset>
-				</form>				
-			</div>	
-		</div>
-	</div>
-</div>
-
