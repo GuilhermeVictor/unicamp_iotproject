@@ -14,6 +14,7 @@ $(document).ready(function () {
 			$("#postMessage").parent().find('span').removeClass('hidden');
 		}
 		else {
+			$('.modal').modal('hide');
 			
 			$.ajax({
 				type: 'POST',
