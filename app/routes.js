@@ -71,36 +71,26 @@ module.exports = function(config, app, passport, render, arduinoserialport, task
 	app.post('/changesport', isLoggedIn, function (req, res) {	
 		var result = {};
 		
-		if (req.body.sport == config.sports.tennis) {
-			arduinoserialport.setCourtSport(config.sports.tennis, function () {
+		arduinoserialport.setCourtSport(req.body.sport, function () {
 			
-				result.sport = config.sports.tennis;
-				postResult(res, 200, result);
-			});
-			
-		} else if (req.body.sport == config.sports.bascketball) {
-			arduinoserialport.setCourtSport(config.sports.bascketball, function () {
-			
-				result.sport = config.sports.bascketball;
-				postResult(res, 200, result);
-			});
-			
-		} else if (req.body.sport == config.sports.soccer) {
-			arduinoserialport.setCourtSport(config.sports.soccer, function () {
-			
-				result.sport = config.sports.soccer;
-				postResult(res, 200, result);
-			});
-			
-		} else {
-			arduinoserialport.setCourtSport(config.sports.volleyball, function () {
-			
-				result.sport = config.sports.volleyball;
-				postResult(res, 200, result);
-			});
-		}
+			result.sport = req.body.sport;
+			postResult(res, 200, result);
+		});		
 	});
 
+	app.post('/roomlight', isLoggedIn, function (req, res) {	
+		var result = {};
+		
+		var lightStatus = req.body.lightStatus;
+		var room = req.body.room;
+		
+		arduinoserialport.setLightStatus(room, lightStatus, function () {
+			
+			result.lightStatus = lightStatus;
+			postResult(res, 200, result);
+		});			
+	});
+	
 	app.post('/docommand', isLoggedIn, function (req, res) {	
 		var result = {};
 		

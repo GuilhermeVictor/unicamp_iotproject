@@ -1,20 +1,10 @@
-var card = undefined;
-var scard = undefined;
 
 $(document).ready(function () {
 	
-	card = new SportCard($('.sport-card'));
-		
-	card.setCourtStatus(card.courtStatus.off.name);
-	card.setSport(card.sports.soccer.name);
-	
-	card.updateSport();
-	card.updateLight();
+	new SportCard($('.sport-card'), 'off', 'soccer');		
 	
 	$('.light-card').each(function () {
-		var light = new LightCard($(this));
-		
-		light.updateLight();
+		new LightCard($(this));		
 	});
 	
 	initCommandControls();

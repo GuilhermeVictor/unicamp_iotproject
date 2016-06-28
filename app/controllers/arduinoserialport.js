@@ -104,6 +104,38 @@ ArduinoSerialPortController.prototype = {
 		write(config.arduino.makeCoffe, this.sp);
 
 		done(true);
+	},
+	
+	setLightStatus: function (room, lightStatus, done) {
+		var config = this.config;
+		
+		if (room == config.lights.room.kitchen) {
+			if (lightStatus == config.lights.status.on)
+				write(config.arduino.kitchen_on, this.sp);
+			else
+				write(config.arduino.kitchen_off, this.sp);
+			
+		} else if (room == config.lights.room.bedroom) {
+			if (lightStatus == config.lights.status.on)
+				write(config.arduino.bedroom_on, this.sp);
+			else
+				write(config.arduino.bedroom_off, this.sp);
+			
+		} else if (room == config.lights.room.living_room) {
+			if (lightStatus == config.lights.status.on)
+				write(config.arduino.living_room_on, this.sp);
+			else
+				write(config.arduino.living_room_off, this.sp);
+			
+		} else if (room == config.lights.room.outside) {
+			if (lightStatus == config.lights.status.on)
+				write(config.arduino.outside_on, this.sp);
+			else
+				write(config.arduino.outside_off, this.sp);
+			
+		}
+
+		done(true);
 	}
 }
 
