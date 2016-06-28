@@ -14,22 +14,24 @@ $(document).ready(function () {
 			$("#postMessage").parent().find('span').removeClass('hidden');
 		}
 		else {
+			
 			$.ajax({
 				type: 'POST',
-				url: '/chanssgesport',
+				url: '/post',
 				async: false,
 				dataType: 'json',
 				contentType: 'application/json',
 				data: JSON.stringify(data),
 				error: function(err) {
-					console.log(err);
-					//TODO alert
+					var response = JSON.parse(JSON.parse(err.responseText));
+					console.log(response);
+					bootbox.alert(response.message);
 				},
-				success: function (data) {
-					data = jQuery.parseJSON(data);
-					console.log(data);
-					card.setSport(data.sport);
-					card.updateSport();
+				success: function () {
+					bootbox.alert('Seu comentário foi postado na sua linha do tempo');					
+				},
+				complete: function () {
+					$("#postMessage").val('');
 				}
 			});
 		}

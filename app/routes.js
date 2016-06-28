@@ -1,6 +1,6 @@
 // app/routes.js
 
-var api = require('./config/facebook');
+var fb_api = require('./config/facebook');
 
 module.exports = function(config, app, passport, render, arduinoserialport, taskScheduler) {
 	var sidenavprovider = require('./utility/sidenavprovider')(passport);		
@@ -39,15 +39,28 @@ module.exports = function(config, app, passport, render, arduinoserialport, task
 			
 			if (model.token) {
 
-	    	// Call function that contains API call to post on Facebook (see facebook.js)
-	   		 	api.postMessage(model.token, req.body.message, res);
-	   		 	res.redirect('/');
+				// Call function that contains API call to post on Facebook (see facebook.js)
+	   		 	fb_api.postMessage(model.token, req.body.message, function (err) {
+					
+					//console.log(err);
+					
+					if (err) {
+						
+						if (err.code == 200) 
+							postResult(res, 400, { message: "Você não deu permissão para escrever na sua linha do tempo." });
+						
+						else
+							postResult(res, 400, err);
+					}
+					else
+						postResult(res, 200);					
+				});
+	   		 	
 	    
 	  		} else {
-	    		console.log("Couldn't confirm that user was authenticated. Redirecting to /");
-	    		res.redirect('/');
-	 		 }		
-			
+				
+				postResult(res, 400, { message: "Você não está logado no facebook." });
+			}					
 		});		
 
 	  // Check to ensure user has a valid access_token
