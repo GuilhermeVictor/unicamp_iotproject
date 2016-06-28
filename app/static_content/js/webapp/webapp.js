@@ -11,6 +11,11 @@ $(document).ready(function () {
 	card.updateSport();
 	card.updateLight();
 	
+	$('.light-card').each(function () {
+		var light = new LightCard($(this));
+		
+		light.updateLight();
+	});
 	
 	initCommandControls();
 	

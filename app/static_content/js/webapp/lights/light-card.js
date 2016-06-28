@@ -2,13 +2,13 @@
 function LightCard($el) {
 	this.$el = $el;
 	
-	this.courtStatus = {
+	this.lightStatus = {
 		on : {
-			btn_display: 'Desligar quadra',
+			btn_display: 'Desligar',
 			name: 'on',
 		},
 		off : {
-			btn_display: 'Ligar quadra',
+			btn_display: 'Ligar',
 			name: 'off',
 			a_class: 'gray'
 		},
@@ -17,84 +17,59 @@ function LightCard($el) {
 	this.rooms = {
 		kitchen: {			
 			name: 'kitchen',
-			a_class: 'red',			
-			btn_class: 'btn-danger',
-			img: '/img/tennis_128.png'
+			a_class: 'yellow',			
+			btn_class: 'btn-warning',
+			img_on: '/img/Dish-128.png',
+			img_off: '/img/Dish-gray-128.png'
 		},
 		bedroom: {			
 			name: 'bedroom',
-			a_class: 'orange',			
-			btn_class: 'btn-warning',
-			img: '/img/bascketball_128.png'
+			a_class: 'blue',			
+			btn_class: 'btn-primary',
+			img_on: '/img/bedroom-128.png',
+			img_off: '/img/bedroom-gray-128.png'
 		},
 		living_room: {			
 			name: 'living_room',
+			a_class: 'red',
+			btn_class: 'btn-danger',
+			img_on: '/img/livingroom-128.png',
+			img_off: '/img/livingroom-gray-128.png'
+		},
+		outside: {
+			name: 'outside',			
 			a_class: 'green',
 			btn_class: 'btn-success',
-			img: '/img/soccer_128.png'
-		},
-		external: {
-			name: 'external',			
-			a_class: 'blue',
-			btn_class: 'btn-primary',
-			img: '/img/volleyball_128.png'
+			img_on: '/img/outside-128.png',
+			img_off: '/img/outside-gray-128.png'
 		}
 	};	
-
-	var card = this;
-		
-	this.$el.find('.btn-change-sport').click(function(e){
-		e.preventDefault();
-		
-		var status = card.$el.find('.turnonoff-court').attr('data-status');
-		
-		if (status == card.courtStatus.on.name) {
-						
-			var $modal = $('#change-sport-dialog');
-			
-			$modal.modal('show');
-			$modal.find('.btn-change-sport').unbind('click');
-			$modal.find('.btn-change-sport').click(function () {
-				e.preventDefault();
-			
-				var sport = $(this).attr('data-sport');
-				
-				var data = {};
-				data.sport = sport;
-								
-				$.ajax({
-					type: 'POST',
-					url: '/changesport',
-					async: false,
-					dataType: 'json',
-					contentType: 'application/json',
-					data: JSON.stringify(data),
-					error: function(err) {
-						console.log(err);
-						//TODO alert
-					},
-					success: function (data) {
-						data = jQuery.parseJSON(data);
-						console.log(data);
-						card.setSport(data.sport);
-						card.updateSport();
-					}
-				});
-			});			
-		}
-	});
 	
-	this.$el.find('.turnonoff-court').click(function(e) {
+	var room = $el.attr('data-room');
+	
+	if (room == this.rooms.kitchen.name)
+		this.room = this.rooms.kitchen;
+	else if (room == this.rooms.bedroom.name)
+		this.room = this.rooms.bedroom;
+	else if (room == this.rooms.living_room.name)
+		this.room = this.rooms.living_room;
+	else if (room == this.rooms.outside.name)
+		this.room = this.rooms.outside;
+	
+	var card = this;		
+	
+	this.$el.find('.turnonoff-light').click(function(e) {
 		e.preventDefault();
 		
 		var status = $(this).attr('data-status');
 		
 		var data = {};
 		data.courtStatus = status;
-						
+		data.room = card.room.name;		
+		
 		$.ajax({
 			type: 'POST',
-			url: '/courtlight',
+			url: '/roomlight',
 			async: true,
 			dataType: 'json',
 			contentType: 'application/json',
@@ -106,151 +81,58 @@ function LightCard($el) {
 			success: function (data) {
 				data = jQuery.parseJSON(data);
 				console.log(data);
-				card.setCourtStatus(data.courtStatus);
-				card.updateLight();
-				card.fbgray();
+				card.setLightStatus(data.LightStatus);				
+				card.updateLight();				
+			},
+			complete: function () {
+				card.setLightStatus('on');
+				card.updateLight();				
 			}
 		});
-	});	
-
-	this.$el.find('.facebook-post').click(function(){
-		
-		var status = card.$el.find('.turnonoff-court').attr('data-status');
-		
-
-		if(status == card.courtStatus.on.name){
-			
-			
-			var $interval = $('#post-facebook-dialog');
-			
-				$interval.modal('show');
-				$('#fbpost').show();
-				$('h2').hide();
-				$('#fbpost').submit(function() {
-    				$('#post-facebook-dialog').modal('hide');
-
-				});
-
-		}	
-
-	});
-
-		
+	});			
 }
 
-LightCard.prototype = {
-
-	updateSport: function() {
-		var $a = this.$el.find('.btn-change-sport');		
-		var $btn = this.$el.find('.turnonoff-court');
+LightCard.prototype = {	
+	
+	setLightStatus: function (status) {
+		var $btn = this.$el.find('.turnonoff-light');
 		
-		this.removeClasses($a, $btn);
-		
-		var sport = $a.attr('data-sport');
-		
-		if (sport == this.sports.tennis.name) {
-			$a.find('img').attr('src', this.sports.tennis.img);
-			$a.find('p').html(this.sports.tennis.display);
-			$a.addClass(this.sports.tennis.a_class);
-			$btn.addClass(this.sports.tennis.btn_class);
-			
-		} else if (sport == this.sports.bascketball.name) {
-			$a.find('img').attr('src', this.sports.bascketball.img);
-			$a.find('p').html(this.sports.bascketball.display);
-			$a.addClass(this.sports.bascketball.a_class);
-			$btn.addClass(this.sports.bascketball.btn_class);
-			
-		} else if (sport == this.sports.volleyball.name) {
-			$a.find('img').attr('src', this.sports.volleyball.img);
-			$a.find('p').html(this.sports.volleyball.display);
-			$a.addClass(this.sports.volleyball.a_class);
-			$btn.addClass(this.sports.volleyball.btn_class);
-			
-		} else if (sport == this.sports.soccer.name) {
-			$a.find('img').attr('src', this.sports.soccer.img);
-			$a.find('p').html(this.sports.soccer.display);
-			$a.addClass(this.sports.soccer.a_class);
-			$btn.addClass(this.sports.soccer.btn_class);
-		}
+		$btn.attr('data-status', status);
 	},
 	
 	updateLight: function () {
-		var $a = this.$el.find('.btn-change-sport');
-		var $btn = this.$el.find('.turnonoff-court');
-			
-		var sport = $a.attr('data-sport');
+		var $a = this.$el.find('.btn-toogle-light');
+		var $btn = this.$el.find('.turnonoff-light');
+		var $img = this.$el.find('.light-img');
+		
 		var status = $btn.attr('data-status');
 		
 		this.removeClasses($a, $btn);
 
-		if (status == this.courtStatus.on.name) {
-			$btn.text(this.courtStatus.on.btn_display);
+		if (status == this.lightStatus.on.name) {
+			$btn.text(this.lightStatus.on.btn_display);
 
-		
-
-			if (sport == this.sports.tennis.name) {
-				$a.addClass(this.sports.tennis.a_class);
-				$btn.addClass(this.sports.tennis.btn_class);
-					
-			} else if (sport == this.sports.bascketball.name) {
-				$a.addClass(this.sports.bascketball.a_class);
-				$btn.addClass(this.sports.bascketball.btn_class);
-				
-			} else if (sport == this.sports.volleyball.name) {
-				$a.addClass(this.sports.volleyball.a_class);
-				$btn.addClass(this.sports.volleyball.btn_class);
-				
-			} else if (sport == this.sports.soccer.name) {
-				$a.addClass(this.sports.soccer.a_class);
-				$btn.addClass(this.sports.soccer.btn_class);
-			}
+			$a.addClass(this.room.a_class);
+			$btn.addClass(this.room.btn_class);
+			
+			$img.attr('src', this.room.img_on);
 			
 		} else {
-			$btn.text(this.courtStatus.off.btn_display);
-			$a.addClass(this.courtStatus.off.a_class);
-		}		
-	},
-
-	fbgray: function(){
-		var $graybutton = this.$el.find('.facebook-post');
-		var $btn = this.$el.find('.turnonoff-court');
+			$btn.text(this.lightStatus.off.btn_display);
+			$a.addClass(this.lightStatus.off.a_class);
 			
-		var status = $btn.attr('data-status');
-
-		if(status == this.courtStatus.on.name){
-			$graybutton.removeClass("gray");
-		}
-		else{
-			$graybutton.addClass("gray");
-
-		}
-	},
-	
-
-	setSport: function (sport) {
-		this.$el.find('.btn-change-sport').attr('data-sport', sport);
-	},
-	
-	setCourtStatus: function (status) {
-		this.$el.find('.turnonoff-court').attr('data-status', status);			
+			$img.attr('src', this.room.img_off);
+		}		
 	},
 	
 	removeClasses: function ($a, $btn) {
 		
 		$a.removeClass(
-			this.sports.tennis.a_class + ' ' + 
-			this.sports.soccer.a_class + ' ' + 
-			this.sports.bascketball.a_class + ' ' + 
-			this.sports.volleyball.a_class + ' ' +
-			this.courtStatus.off.a_class
+			this.room.a_class + ' ' + 			
+			this.lightStatus.off.a_class
 		);		
 				
-		$btn.removeClass(
-			this.sports.tennis.btn_class + ' ' + 
-			this.sports.soccer.btn_class + ' ' + 
-			this.sports.bascketball.btn_class + ' ' + 
-			this.sports.volleyball.btn_class
-		);
+		$btn.removeClass(this.room.btn_class);
 	}
 
 	
